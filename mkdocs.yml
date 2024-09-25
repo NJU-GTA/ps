@@ -1,3 +1,90 @@
-site_name: My Docs
+site_name: Graph Theorem and Algorithm
 theme:
   name: material
+  custom_dir: overrides
+  features:
+    - content.tabs.link
+    - navigation.indexes
+    - navigation.tabs
+    #- navigation.sections
+    - toc.follow
+    - navigation.top
+    - navigation.instant
+    - navigation.tabs
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+    - content.tabs.link
+  language: zh
+  palette: 
+
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# plugins:
+#   # - search
+#   - search
+#   - blog
+#   # - blog:
+#   #     archive_date_format: MMMM yyyy
+
+plugins:
+  - search:
+      separator: '[\s\u200b\-]'
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+# extra_javascript:
+#   - javascripts/katex.js
+#   - https://unpkg.com/katex@0/dist/katex.min.js
+#   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+# extra_css:
+#   - https://unpkg.com/katex@0/dist/katex.min.css
+
+# nav:
+#   - 主页: index.md
+#   - 更新:
+#      - blog/index.md
