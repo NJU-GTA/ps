@@ -41,9 +41,9 @@ theme:
 #   # - blog:
 #   #     archive_date_format: MMMM yyyy
 
-# plugins:
-#   - search:
-#       separator: '[\s\u200b\-]'
+plugins:
+  - search:
+      separator: '[\s\u200b\-]'
 
 markdown_extensions:
   - pymdownx.arithmatex:
