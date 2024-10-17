@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+<!-- Theme-related JavaScript -->
+{% block body %}
+<style>
+  /* 调整伪代码字体大小 */
+  .pseudocode { 
+      font-size: 25px; /* 设置字体大小 */
+  }
+</style>
+{% endblock %}
+{% block content %}
+  {{ super() }}
+
+  <!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
+  <!-- pseudocode.js -->
+<!-- pseudocode.js -->
+<link rel="stylesheet" href="{{ 'assets/javascripts/pseudocode.css' | url }}">
+<script src="{{ 'assets/javascripts/pseudocode.min.js' | url }}"></script>
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+  integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script efer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+  integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      // customised options
+      // • auto-render specific keys, e.g.:
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '\\[', right: '\\]', display: true }
+      ],
+      // • rendering keys, e.g.:
+      throwOnError: false
+    });
+  });
+</script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script src="{{ 'assets/javascripts/pseudocode.js' | url }}"></script>
+<script>
+  let pseudocodes = document.querySelectorAll(".language-pseudocode");
+  let options = {
+    lineNumber: true
+  };
+  pseudocodes.forEach((pse) => {
+    let code = pse.textContent;
+    let parentEl = pse.parentElement;
+    pseudocode.render(code, parentEl, options);
+    pse.remove();
+    $(parentEl).replaceWith($('<div>' + parentEl.innerHTML + '</div>'));
+  })
+</script>
+{% endblock %}
+<!-- <script src="{{ 'assets/javascripts/pseudocode.js' | url }}"></script>
+  <script src="{{ 'assets/javascripts/pseudocode.min.js' | url }}"></script>
+  <script src="{{ 'assets/javascripts/document.js' | url }}"></script> -->

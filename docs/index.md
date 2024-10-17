@@ -59,7 +59,22 @@ hide:
 
 </div>
 
-  [meta]: 问求相关/GTA/1.md
-  [social]: 问求相关/GTA/1.md
-  [optimize]: 问求相关/GTA/1.md
-  [tags]: 问求相关/GTA/1.md
+<div class="grid cards" markdown>
+
+-   :material-file-tree: &nbsp; __[图论笔记（六）][social]__
+
+    ---
+
+    本节整理了问求教材《图论与算法》第六章赋权图中的一些定义，并对思考题做出了解答
+
+    ---
+
+    __要点：赋权图  Dijkstra算法__
+
+</div>
+
+  [meta]: 问求相关/GTA/5.md
+  [social]: 问求相关/GTA/6.md
+  [optimize]: 问求相关/GTA/5.md
+  [tags]: 问求相关/GTA/5.md
+
