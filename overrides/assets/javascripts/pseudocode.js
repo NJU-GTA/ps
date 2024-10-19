@@ -588,7 +588,7 @@ Parser.prototype._parseRepeat = function() {
     return repeatNode;
 };
 
-var INPUTS_OUTPUTS_COMMANDS = ['ensure', 'require', 'input', 'output'];
+var INPUTS_OUTPUTS_COMMANDS = ['ensure', 'require', 'input', 'output', 'initialize'];
 var STATEMENT_COMMANDS = ['state', 'print', 'return'];
 Parser.prototype._parseCommand = function(acceptCommands) {
     if (!this._lexer.accept('func', acceptCommands)) return null;
@@ -1442,11 +1442,16 @@ Renderer.prototype._buildTree = function(node) {
                 this._buildTree(elseBlock);
             }
 
+            this._options.noEnd = true;
+
             if (!this._options.noEnd) {
                 // ENDIF
                 this._newLine();
                 this._typeKeyword('end if');
             }
+
+            this._options.noEnd = false;
+
             break;
         case 'loop':
             // \FOR{<cond>} or \WHILE{<cond>}
@@ -1473,16 +1478,21 @@ Renderer.prototype._buildTree = function(node) {
             this._buildCommentsFromBlock(block);
             this._buildTree(block);
 
+            this._options.noEnd = false;
+
             if (!this._options.noEnd) {
                 // \ENDFOR or \ENDWHILE
                 // ==>
                 // <p class="ps-line">
                 //      <span class="ps-keyword">end for</span>
                 // </p>
-                this._newLine();
-                var endLoopName = loopType === 'while' ? 'end while' : 'end for';
-                this._typeKeyword(endLoopName);
+                // this._newLine();
+                // var endLoopName = loopType === 'while' ? 'end while' : 'end for';
+                // this._typeKeyword(endLoopName);
             }
+            
+            this._options.noEnd = false;
+
             break;
         case 'repeat':
             // \REPEAT
@@ -1520,6 +1530,7 @@ Renderer.prototype._buildTree = function(node) {
                 'require': 'Require: ',
                 'input': 'Input: ',
                 'output': 'Output: ',
+                'initialize': 'Initialize: ',
                 'print': 'print ',
                 'return': 'return ',
             }[cmdName];
