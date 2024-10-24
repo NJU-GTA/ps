@@ -12,6 +12,7 @@ theme:
     - navigation.instant
     - navigation.tabs
     - navigation.path
+    - navigation.footer
     - search.suggest
     - search.highlight
     - search.share
@@ -20,19 +21,24 @@ theme:
     - content.code.copy
     - content.tabs.link
   language: zh
+  favicon: assets/logo.png
   palette: 
+    # - primary: custom
 
     # Palette toggle for light mode
     - scheme: default
       toggle:
         icon: material/brightness-7 
         name: Switch to dark mode
+      primary: darkgrey
 
     # Palette toggle for dark mode
     - scheme: slate
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+      primary: black
+      accent: 
 
 # plugins:
 #   # - search
@@ -44,6 +50,10 @@ theme:
 plugins:
   - search:
       separator: '[\s\u200b\-]'
+  - changelog
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - pymdownx.arithmatex:

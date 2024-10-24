@@ -11,7 +11,7 @@ hide:
 
 <div class="grid cards" markdown>
 
--   :material-file-tree: &nbsp; __[图论笔记（五）][meta]__
+-   :material-file-tree: &nbsp; __[图论笔记（五）][ch5]__
 
     ---
 
@@ -61,7 +61,7 @@ hide:
 
 <div class="grid cards" markdown>
 
--   :material-file-tree: &nbsp; __[图论笔记（六）][social]__
+-   :material-file-tree: &nbsp; __[图论笔记（六）][ch6]__
 
     ---
 
@@ -73,8 +73,21 @@ hide:
 
 </div>
 
-  [meta]: 问求相关/GTA/5.md
-  [social]: 问求相关/GTA/6.md
-  [optimize]: 问求相关/GTA/5.md
-  [tags]: 问求相关/GTA/5.md
+<div class="grid cards" markdown>
+
+-   :material-file-tree: &nbsp; __[图论笔记（七）][ch7]__
+
+    ---
+
+    本节整理了问求教材《图论与算法》第七章有向图图中的一些定义，并对思考题做出了解答
+
+    ---
+
+    __要点：有向图__
+
+</div>
+
+  [ch5]: 问求相关/GTA/5.md
+  [ch6]: 问求相关/GTA/6.md
+  [ch7]: 问求相关/GTA/7.md
 
