@@ -87,7 +87,21 @@ hide:
 
 </div>
 
+<div class="grid cards" markdown>
+
+-   :material-file-tree: &nbsp; __[图论笔记（八）][ch8]__
+
+    ---
+
+    本节整理了问求教材《图论与算法》第八章独立、覆盖与支配图的一些定义，并对思考题做出了解答
+
+    ---
+
+    __要点：独立  覆盖  支配__
+
+</div>
+
   [ch5]: 问求相关/GTA/5.md
   [ch6]: 问求相关/GTA/6.md
   [ch7]: 问求相关/GTA/7.md
-
+  [ch8]: 问求相关/GTA/8.md
