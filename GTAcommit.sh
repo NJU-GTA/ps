@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-if [[ $? == 0 ]]; then
+if [[ $# == 1 ]]; then
     echo "111"
     git add .
     git commit -m "$1"
