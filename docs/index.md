@@ -101,7 +101,22 @@ hide:
 
 </div>
 
+<div class="grid cards" markdown>
+
+-   :material-file-tree: &nbsp; __[图论笔记（九）][ch9]__
+
+    ---
+
+    本节整理了问求教材《图论与算法》第九章染色的一些定义，并对思考题做出了解答
+
+    ---
+
+    __要点：边染色 点染色__
+
+</div>
+
   [ch5]: 问求相关/GTA/5.md
   [ch6]: 问求相关/GTA/6.md
   [ch7]: 问求相关/GTA/7.md
   [ch8]: 问求相关/GTA/8.md
+  [ch9]: 问求相关/GTA/9.md
