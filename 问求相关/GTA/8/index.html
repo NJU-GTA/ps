@@ -1,0 +1,1304 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../7/">
+      
+      
+        <link rel="next" href="../9/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>图论笔记（八） - Graph Theorem and Algorithm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeline.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="darkgrey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Graph Theorem and Algorithm" class="md-header__button md-logo" aria-label="Graph Theorem and Algorithm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Graph Theorem and Algorithm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              图论笔记（八）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="darkgrey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  问求相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Graph Theorem and Algorithm" class="md-nav__button md-logo" aria-label="Graph Theorem and Algorithm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Graph Theorem and Algorithm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    问求相关
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            问求相关
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GTA
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            GTA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（五）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（六）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（七）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    图论笔记（八）
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（八）
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      边的独立、覆盖与支配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="边的独立、覆盖与支配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      独立
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      覆盖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      支配
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      顶点的独立、覆盖与支配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="顶点的独立、覆盖与支配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      独立
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      覆盖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      支配
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（九）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      边的独立、覆盖与支配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="边的独立、覆盖与支配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      独立
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      覆盖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      支配
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      顶点的独立、覆盖与支配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="顶点的独立、覆盖与支配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      独立
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      覆盖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      支配
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+<h1 id="_1">图论笔记（八）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">边的独立、覆盖与支配<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">独立<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><strong>边独立集</strong>：匹配<br />
+<strong>极大边独立集</strong>：极大匹配<br />
+<strong>最大边独立集</strong>：最大匹配<br />
+<strong>边独立数</strong>：最大边独立集的大小，记作 <span class="arithmatex">\(\alpha'(G)\)</span></p>
+<h3 id="_4">覆盖<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>边覆盖集</strong>：边的所有端点组成的集合为顶点集 <span class="arithmatex">\(V\)</span><br />
+<strong>极小边覆盖集</strong>：任何边覆盖集都不是该边覆盖集的真子集<br />
+<strong>最小边覆盖集</strong>：边数最少的边覆盖集<br />
+<strong>边覆盖数</strong>：最小边覆盖集的大小，记作 <span class="arithmatex">\(\beta'(G)\)</span>  </p>
+<h3 id="_5">支配<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>对于图 <span class="arithmatex">\(G = \langle V, E\rangle\)</span> 和边子集 <span class="arithmatex">\(D' \subseteq E\)</span></p>
+<ul>
+<li><strong>边支配集</strong>（edge dominating set）：任何 <span class="arithmatex">\(D'\)</span> 之外的边都与 <span class="arithmatex">\(D'\)</span> 中至少一条边相邻</li>
+<li><strong>极小边支配集</strong>（minimal edge dominating set）：任何边支配集都不是该边支配集的真子集  </li>
+<li><strong>最小边支配集</strong>（minimum edge dominating set）：边的数量最少的边支配集</li>
+<li><strong>边支配数</strong>（edge domination number）：最小边支配集的大小，记作 <span class="arithmatex">\(\gamma'(G)\)</span></li>
+</ul>
+<details class="note" open="open">
+<summary>思考题 8.1  每个图都有边独立集、边覆盖集、边支配集吗？</summary>
+<p><span class="arithmatex">\(\emptyset\)</span> 是任何图的边独立集，<span class="arithmatex">\(K_1\)</span> 没有边覆盖集，<span class="arithmatex">\(E\)</span> 是任何图的边支配集<br />
+一个图存在边覆盖集当且仅当它没有孤立点。如果存在边覆盖集，则每个点都关联其中的至少一条边，从而没有孤立点；如果没有孤立点，则 <span class="arithmatex">\(E\)</span> 就是边覆盖集。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.2  图 1.6（a）所示的彼得森图的边独立数、边覆盖数、边支配数分别是多少？</summary>
+<p><img alt="peterson graph" src="../peterson.png" />
+边独立数：5（<span class="arithmatex">\(\{v_1 v_6, v_2 v_7, v_3 v_8, v_4 v_9, v_5 v_{10}\}\)</span>）
+边覆盖数：5（<span class="arithmatex">\(\{v_1 v_6, v_2 v_7, v_3 v_8, v_4 v_9, v_5 v_{10}\}\)</span>）
+边支配数：4（<span class="arithmatex">\(\{v_1 v_6, v_7 v_10, v_3 v_8, v_4 v_9\}\)</span>）</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.3  阶为 <span class="arithmatex">\(n\)</span> 的图的边独立数的上界是多少？边覆盖数的下界是多少？边支配数的下界是多少？</summary>
+<p>边独立数 <span class="arithmatex">\(\leq \lfloor n / 2 \rfloor\)</span>，边覆盖数 <span class="arithmatex">\(\geq \lceil n / 2 \rceil\)</span>，边支配数 <span class="arithmatex">\(\geq 1\)</span>（<span class="arithmatex">\(m \geq 1\)</span>）</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.4  完全图 <span class="arithmatex">\(K_n\)</span> 的边独立数、边覆盖数、边支配数分别是多少？</summary>
+<p><span class="arithmatex">\(\lfloor n / 2 \rfloor, \lceil n / 2 \rceil, \lfloor n / 2 \rfloor\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.5  完全二分图 <span class="arithmatex">\(K_{m, n}\)</span> 的边独立数、边覆盖数、边支配数分别是多少？</summary>
+<p><span class="arithmatex">\(\min\{m, n\}, \max\{m, n\}, \min \{m, n\}\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.6  边独立集、极小边覆盖集、极小边支配集的边导出子图的每个连通分支分别有什么特征？</summary>
+<p>边独立集：每个连通分支均为一条边<br />
+极小边覆盖集：直径小于等于 2  <br />
+极小边支配集：直径小于等于 2  </p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.1</summary>
+<p>对于任意一个不含孤立点的图 <span class="arithmatex">\(G\)</span>：
+$$
+\alpha'(G) \leq \beta'(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.7  证明定理 8.1</summary>
+<div class="arithmatex">\[
+\alpha'(G) \leq \lfloor n / 2 \rfloor \leq \lceil n / 2 \rceil \leq \beta'(G)
+\]</div>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.8  若图 <span class="arithmatex">\(G\)</span> 的一个边独立集和一个边覆盖集的大小相等，则能得出什么结论？</summary>
+<p>上一题中的不等号全部取等，即 <span class="arithmatex">\(G\)</span> 有完美匹配</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.2</summary>
+<p>对于任意一个不含孤立点的图G：
+$$
+\alpha'(G) + \beta'(G) = \nu(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.9 证明定理 8.2</summary>
+<p>设 <span class="arithmatex">\(M\)</span> 为最大匹配，对于任意一个未匹配的点选取一条与之关联的边加入 <span class="arithmatex">\(M\)</span>，最后得到 <span class="arithmatex">\(L\)</span> 为边覆盖集，我们有
+$$
+\alpha'(G) = |M| = \nu(G) - |L| \leq \nu(G) - \beta'(G)
+$$
+设 <span class="arithmatex">\(L'\)</span> 为最小边覆盖集，在 <span class="arithmatex">\(G[L']\)</span> 的每个连通分支中取一条边组成匹配 <span class="arithmatex">\(M'\)</span>，由于每个连通分支直径小于 2，其形状成星形，有
+$$
+\nu(G) = |M'|+|L'| = |M'| + \beta'(G) \leq \alpha'(G) + \beta'(G)
+$$
+因此
+$$
+\alpha'(G) + \beta'(G) = \nu(G)
+$$</p>
+</details>
+<details class="abstract" open="open">
+<summary>推论 8.1</summary>
+<p>对于任意一个不含孤立点的图 <span class="arithmatex">\(G\)</span>，<span class="arithmatex">\(\alpha'(G) = \beta'(G)\)</span> 当且仅当 <span class="arithmatex">\(G\)</span> 有完美匹配。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.10 证明推论8.1。</summary>
+<p><strong>充分性</strong>：若 <span class="arithmatex">\(G\)</span> 有完美匹配 <span class="arithmatex">\(M\)</span>，则 <span class="arithmatex">\(M\)</span> 既是匹配又是边覆盖集，于是
+$$
+|M| \leq \alpha'(G) \leq \beta'(G) \leq |M|
+$$
+故 <span class="arithmatex">\(\alpha'(G) = \beta'(G)\)</span><br />
+<strong>必要性</strong>：若 <span class="arithmatex">\(\alpha'(G) = \beta'(G)\)</span>，则 <span class="arithmatex">\(\alpha'(G) = \beta'(G) = \frac{\nu(G)}{2}\)</span> 说明最大匹配就是完美匹配</p>
+</details>
+<details open="open">
+<summary>思考题 8.11  边独立集是边支配集吗？极大边独立集是边支配集吗？</summary>
+<p>边独立集不一定是边支配集，而极大边独立集 <span class="arithmatex">\(M\)</span> 一定是边支配集，否则存在一条边 <span class="arithmatex">\(e\)</span> 不与 <span class="arithmatex">\(M\)</span> 中任何一条边相邻，那么 <span class="arithmatex">\(M \cup \{e\}\)</span> 也是边独立集，与极大矛盾</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.3</summary>
+<p>对于任意一个图G:
+$$
+\alpha'(G) \geq \gamma'(G)
+$$</p>
+</details>
+<details open="open">
+<summary>思考题 8.12 证明定理 8.3</summary>
+<p>设 <span class="arithmatex">\(|M|\)</span> 为最大匹配，则 <span class="arithmatex">\(M\)</span> 也是边支配集，于是
+$$
+\alpha'(G) = |M| \geq \gamma'(G)
+$$</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.4</summary>
+<p>对于任意一个图，存在一个最小边支配集是极大边独立集</p>
+</details>
+<details class="abstract" open="open">
+<summary>推论 8.2</summary>
+<p>对于任意一个图，边支配数是最小的极大边独立集包含的边数</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.13 证明定理 8.4 和推论 8.2</summary>
+<p><strong>定理 8.4 证明</strong>：假设 <span class="arithmatex">\(D\)</span> 是一个最小边支配集，我们先证明一个引理<br />
+<strong>引理</strong>：对于任意一个最小边支配集 <span class="arithmatex">\(D\)</span>，对于 <span class="arithmatex">\(D\)</span> 中相邻的两条边 <span class="arithmatex">\(e_1\)</span> 和 <span class="arithmatex">\(e_2\)</span>，必存在 <span class="arithmatex">\(e \notin D\)</span> 使得 <span class="arithmatex">\(e\)</span> 仅有一端与 <span class="arithmatex">\(D\)</span> 中的边关联<br />
+<strong>证</strong>：如果 <span class="arithmatex">\(e_1\)</span> 相邻的任意边的另一端（不与 <span class="arithmatex">\(e_1\)</span> 关联的一端）都与 <span class="arithmatex">\(D\)</span> 中的边关联，则 <span class="arithmatex">\(D - \{e_1\}\)</span> 也是边支配集，矛盾<br />
+因此，如果 <span class="arithmatex">\(D\)</span> 是边独立集，则它必然是极大的，否则存在 <span class="arithmatex">\(e\)</span> 不与 <span class="arithmatex">\(D\)</span> 中任何边关联，这与 <span class="arithmatex">\(D\)</span> 是支配集矛盾。如果 <span class="arithmatex">\(D\)</span> 不是边独立集，则 <span class="arithmatex">\(D\)</span> 中存在相邻的两条边 <span class="arithmatex">\(e_1, e_2\)</span> 与另一条边 <span class="arithmatex">\(e\)</span> 只有一端与 <span class="arithmatex">\(D\)</span> 中的边关联。这样，<span class="arithmatex">\(D' = D - \{e_1\} \cup \{e\}\)</span> 是边支配集，这是因为 <span class="arithmatex">\(D'\)</span> 的端点集包含 <span class="arithmatex">\(D\)</span> 的端点集，同时 <span class="arithmatex">\(D'\)</span> 边导出子图的连通分支数大于 <span class="arithmatex">\(D\)</span>，于是我们可以重复操作直到得到一个连通分支数等于边数的边支配集，他正好是一个边独立集。<br />
+<strong>推论 8.2 证明</strong>：设最小的极大边独立集为 <span class="arithmatex">\(M\)</span>，则 <span class="arithmatex">\(M\)</span> 是边支配集，因此 <span class="arithmatex">\(\gamma'(G) \leq |M|\)</span>；同时存在一个最小边支配集 <span class="arithmatex">\(D\)</span> 是极大边独立集，则 <span class="arithmatex">\(\gamma'(G) \geq |D| \geq |M|\)</span>，于是 <span class="arithmatex">\(\gamma'(G) = |M|\)</span>。</p>
+</details>
+<h2 id="_6">顶点的独立、覆盖与支配<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">独立<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><strong>点独立集</strong>（vertex independent set）：顶点两两不相邻，简称独立集（independent set）<br />
+<strong>极大点独立集</strong>（maximal vertex independent set）：不是任何点独立集的真子集<br />
+<strong>最大点独立集</strong>（maximum vertex independent set）：顶点数最多的点独立集<br />
+<strong>点独立数</strong>（vertex independence number）：最大点独立集的大小，简称<strong>独立数</strong>（independent number），记作 <span class="arithmatex">\(\alpha(G)\)</span></p>
+<h3 id="_8">覆盖<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>对于 <span class="arithmatex">\(G = \langle V, E \rangle\)</span> 以及顶点子集 <span class="arithmatex">\(C\subseteq V\)</span>，我们定义<br />
+<strong>点覆盖集</strong>（vertex cover）：<span class="arithmatex">\(C\)</span> 中的所有点关联的边的集合为 <span class="arithmatex">\(E\)</span><br />
+<strong>极小点覆盖集</strong>（minimal vertex cover）：<span class="arithmatex">\(C\)</span> 的任意真子集都不是点覆盖集<br />
+<strong>最小点覆盖集</strong>（minimum vertex cover）：顶点数量最少的点覆盖集<br />
+<strong>点覆盖数</strong>（vertex covering number）：最小点覆盖集的大小，简称<strong>覆盖数</strong>（covering number），记作 <span class="arithmatex">\(\beta(G)\)</span>  </p>
+<h3 id="_9">支配<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>对于图 <span class="arithmatex">\(G\)</span> 和顶点子集 <span class="arithmatex">\(D \subseteq V\)</span>，我们定义<br />
+<strong>点支配集</strong>（vertex dominating set）：<span class="arithmatex">\(N(D)\cup D = V\)</span>（<span class="arithmatex">\(N(D)\)</span> 为与 <span class="arithmatex">\(D\)</span> 中顶点相邻的点的集合），简称<strong>支配集</strong>（dominating set）<br />
+<strong>极小点支配集</strong>（minimal vertex dominating set）：<span class="arithmatex">\(C\)</span> 的任意真子集都不是点支配集<br />
+<strong>最小点支配集</strong>（minimum vertex dominating set）：顶点数量最少的点支配集<br />
+<strong>点支配数</strong>（vertex dominating number）：最小点支配集的大小，简称<strong>支配数</strong>（dominating number），记作 <span class="arithmatex">\(\gamma(G)\)</span>  </p>
+<details class="note" open="open">
+<summary>思考题 8.17  每个图都有点独立集、点覆盖集、点支配集吗？</summary>
+<p><span class="arithmatex">\(\emptyset\)</span> 是每个图的点独立集，<span class="arithmatex">\(V\)</span> 是每个图的点覆盖集和点支配集</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.18  图1.6（a）所示的彼得森图的点独立数、点覆盖数、点支配数分别是多少？</summary>
+<p><img alt="peterson graph" src="../peterson.png" />
+<strong>点独立数</strong>：5，注意到 <span class="arithmatex">\(v_1\)</span> 和 <span class="arithmatex">\(v_6\)</span>，<span class="arithmatex">\(v_2\)</span> 和 <span class="arithmatex">\(v_7\)</span>，<span class="arithmatex">\(v_3\)</span> 和 <span class="arithmatex">\(v_8\)</span>，<span class="arithmatex">\(v_4\)</span> 和 <span class="arithmatex">\(v_9\)</span>，<span class="arithmatex">\(v_5\)</span> 和 <span class="arithmatex">\(v_{10}\)</span> 每对至多只能取一个，因此 <span class="arithmatex">\(\alpha(G)\leq 5\)</span>。同时 <span class="arithmatex">\(\{v_1, v_2, v_3, v_4, v_5\}\)</span> 是大小为 5 的点独立集。<br />
+<strong>点覆盖数</strong>：6，注意到 <span class="arithmatex">\(v_1, v_2, v_3, v_4, v_5\)</span> 以及 <span class="arithmatex">\(v_6, v_8, v_{10}, v_7, v_9\)</span> 组成两个圈，每个圈至少需要选三个点才能覆盖圈上面的所有边，因此 <span class="arithmatex">\(\beta(G) \geq 6\)</span>。同时 <span class="arithmatex">\(\{v_1, v_3, v_4, v_6, v_7, v_10\}\)</span> 是大小为 6 的点覆盖集。<br />
+<strong>点支配数</strong>：3，由于 <span class="arithmatex">\(|V| = |N(D) \cup D| \leq |N(D)|+|D| \leq |\Delta(G)| (|D| + 1)\)</span>，我们有 <span class="arithmatex">\(|D| \geq \frac{|V|}{\Delta(G) + 1} = \frac{5}{2}\)</span>，上述不等式对所有点支配集都成立，因此 <span class="arithmatex">\(\gamma (G) \geq 3\)</span>。同时 <span class="arithmatex">\(\{v_1, v_8, v_9\}\)</span> 又是大小为 3 的点支配集。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.19 阶为 <span class="arithmatex">\(n\)</span> 的图的点独立数的上界是多少？点覆盖数的下界是多少？点支配数的下界是多少？</summary>
+<p>以下结论均假设图中没有孤立点<br />
+<strong>点独立数</strong>：<span class="arithmatex">\(n - 1\)</span>，考虑星形，其最大点独立集为所有叶子组成的集合  <br />
+<strong>点覆盖数</strong>：<span class="arithmatex">\(1\)</span>，考虑星形，其最小点覆盖集为单一个中心点组成的集合<br />
+<strong>点支配数</strong>：<span class="arithmatex">\(1\)</span>，仍然考虑星形，其最小点支配集为中心点组成的集合</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.20  阶为 <span class="arithmatex">\(n\)</span> 的树的点独立数的下界是多少？点覆盖数的上界是多少？点支配数的上界是多少？</summary>
+<p><strong>点独立数</strong>：可以定一个点 <span class="arithmatex">\(r\)</span> 为树的根，将所有到 <span class="arithmatex">\(r\)</span> 的距离为偶数的顶点集记为 <span class="arithmatex">\(L\)</span>，距离为奇数的顶点组成的集合记为 <span class="arithmatex">\(R\)</span>，则 <span class="arithmatex">\(L, R\)</span> 均为点独立集，因此 <span class="arithmatex">\(\alpha(G) \geq \max \{|L|, |R|\} \geq \lceil \frac{n}{2} \rceil\)</span><br />
+<strong>点覆盖数</strong>：注意到 <span class="arithmatex">\(L, R\)</span> 都是点覆盖集，故 <span class="arithmatex">\(\beta(G) \leq \min \{|L|, |R|\} \leq \lfloor \frac{n}{2} \rfloor\)</span><br />
+<strong>点支配数</strong>：注意到 <span class="arithmatex">\(L, R\)</span> 都是点支配集，故 <span class="arithmatex">\(\gamma(G) \leq \min \{|L|, |R|\} \leq \lfloor \frac{n}{2} \rfloor\)</span>  </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.21  完全图 <span class="arithmatex">\(K_n\)</span> 的点独立数、点覆盖数、点支配数分别是多少？</summary>
+<p><strong>点独立数</strong>：注意到 <span class="arithmatex">\(\alpha(K_n) \leq 1\)</span>，因为任意两个顶点相邻，而任取一点就组成点独立集，因此 <span class="arithmatex">\(\alpha(K_n) = 1\)</span><br />
+<strong>点覆盖集</strong>：注意到 <span class="arithmatex">\(\alpha(K_n) \geq n - 2\)</span>，否则存在 <span class="arithmatex">\(v_i, v_j \notin C\)</span>，于是边 <span class="arithmatex">\(v_i v_j\)</span> 不与 <span class="arithmatex">\(C\)</span> 中任意顶点相邻，矛盾；另一方面，任取 <span class="arithmatex">\(n-1\)</span> 个顶点就组成点覆盖集，因此 <span class="arithmatex">\(\beta(K_n) = n-1\)</span><br />
+<strong>点支配数</strong>：任取一个点就组成点支配集，因此 <span class="arithmatex">\(\gamma(K_n) = 1\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.22  完全二分图 <span class="arithmatex">\(K_{m，n}\)</span> 的点独立数、点覆盖数、点支配数分别是多少？</summary>
+<p>假设 <span class="arithmatex">\(K = \langle L\cup R, E \rangle\)</span><br />
+<strong>点独立数</strong>：设 <span class="arithmatex">\(I\)</span> 为 <span class="arithmatex">\(K_{m,n}\)</span> 的点独立集，显然要么 <span class="arithmatex">\(I \subseteq L\)</span>，要么 <span class="arithmatex">\(I \subseteq R\)</span>，因此 <span class="arithmatex">\(\alpha(K_{m,n}) \leq\max\{m,n\}\)</span>。而 <span class="arithmatex">\(L, R\)</span> 又都是点独立集，故 <span class="arithmatex">\(\alpha(K_{m,n}) = \max \{m, n\}\)</span>。<br />
+<strong>点覆盖数</strong>：<span class="arithmatex">\(K_{m, n}\)</span> 又大小为 <span class="arithmatex">\(\min \{m, n\}\)</span> 的完美匹配 <span class="arithmatex">\(M\)</span>，任何点覆盖集必须包含 <span class="arithmatex">\(M\)</span> 中的任何一条边的至少一个端点，于是 <span class="arithmatex">\(\beta(K_{m, n}) \geq \min \{m, n\}\)</span>。同时 <span class="arithmatex">\(L,R\)</span> 中大小较小的那一个又是大小为 <span class="arithmatex">\(\min \{m,n\}\)</span> 的点覆盖集，故 <span class="arithmatex">\(\alpha(K_{m, n}) = \min \{m, n\}\)</span><br />
+<strong>点支配集</strong>：<span class="arithmatex">\(\gamma(K_{m, n}) = \min \{m,n,2\}\)</span>。若 <span class="arithmatex">\(|L| = 1\)</span> 或 <span class="arithmatex">\(|R| = 1\)</span>，则取一个点就能组成点支配集；若 <span class="arithmatex">\(|L| \geq 2\)</span> 且 <span class="arithmatex">\(|R| \geq 2\)</span>，则分别在 <span class="arithmatex">\(L\)</span> 和 <span class="arithmatex">\(R\)</span> 中取一个点就组成点支配集，显然不能再小了。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.23  点独立集的补集是点覆盖集吗？点覆盖集的补集是点独立集吗？</summary>
+<p>点独立集的补集是点覆盖集，设 <span class="arithmatex">\(I\)</span> 为点独立集，则 <span class="arithmatex">\(E\)</span> 中任意一条边都至少有一个端点不在 <span class="arithmatex">\(I\)</span> 中，换言之，<span class="arithmatex">\(E\)</span> 中的每一条边均与 <span class="arithmatex">\(V - I\)</span> 中的至少一个点关联 <br />
+点覆盖集的补集是点独立集，设 <span class="arithmatex">\(C\)</span> 为点覆盖集，则不可能有边两端都不在 <span class="arithmatex">\(C\)</span> 中，即 <span class="arithmatex">\(V - C\)</span> 中的点不可能相邻</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.8</summary>
+<p>对于任意一个图 <span class="arithmatex">\(G\)</span>：
+$$
+\alpha(G)+\beta(G)=\nu(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.24  证明定理 8.8</summary>
+<p>分两步证明：<br />
+1. <span class="arithmatex">\(\alpha(G) + \beta(G) \leq \nu(G)\)</span><br />
+取最大点独立集 <span class="arithmatex">\(D_M\)</span>，则 <span class="arithmatex">\(V - D_M\)</span> 是点覆盖集，于是 <span class="arithmatex">\(\beta(G) \leq |V - D_M| = \nu(G) - \alpha(G)\)</span><br />
+2. <span class="arithmatex">\(\alpha(G) + \beta(G) \geq \nu(G)\)</span><br />
+取最小点覆盖集 <span class="arithmatex">\(C_m\)</span>，则 <span class="arithmatex">\(V - C_m\)</span> 是点独立集，于是 <span class="arithmatex">\(\alpha(G) \geq |V-C_m|= \nu(G) - \beta(G)\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.25  对于不含孤立点的图，点支配集的补集也是点支配集吗？极小点支配集的补集是点支配集吗？</summary>
+<p>点支配集的补集不一定是点支配集，例如 <span class="arithmatex">\(V\)</span> 的补集 <span class="arithmatex">\(\emptyset\)</span> 就不是点支配集<br />
+但极小点支配集的补集一定是点支配集。设 <span class="arithmatex">\(D\)</span> 为极小点支配集，则 <span class="arithmatex">\(N(D) \cup D = V\)</span>。我们假设 <span class="arithmatex">\(N(V - D) \cup (V - D) \neq V\)</span>，则存在 <span class="arithmatex">\(u \in V, u \notin N(V - D)\)</span> 且 <span class="arithmatex">\(u \notin V - D\)</span>，即 <span class="arithmatex">\(N(u) \cap (V - D) = \emptyset\)</span> 且 <span class="arithmatex">\(u \in D\)</span>。于是 <span class="arithmatex">\(N(u) \subseteq D\)</span>，由于图中没有孤立点，故 <span class="arithmatex">\(N(u) \neq \emptyset\)</span>，因此 <span class="arithmatex">\(u \in N(D - \{u\})\)</span>，而 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(N(u)\)</span> 之外的点都显然已经在 <span class="arithmatex">\(N(D - \{u\}) \cup (D - \{u\})\)</span> 中，我们有 <span class="arithmatex">\(N(D - \{u\}) \cup (D - \{u\}) = V\)</span>，这与 <span class="arithmatex">\(D\)</span> 极小矛盾。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.26  对于极小点支配集中的顶点，其邻点有什么特征？</summary>
+<p>对于任意两个点 <span class="arithmatex">\(u, v\)</span>，要么 <span class="arithmatex">\(u \in N(v)\)</span>，要么 <span class="arithmatex">\(N(u) \neq N(V)\)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.27  点独立集是点支配集吗？极大点独立集是点支配集吗？极大点独立集是极小点支配集吗？</summary>
+<p>点独立集不一定是点支配集，例如空集。<br />
+极大点独立集一定是点支配集。假设 <span class="arithmatex">\(I\)</span> 是极大点独立集但不是点支配集，则 <span class="arithmatex">\(N(I) \cup I \neq V\)</span>，即 <span class="arithmatex">\(\exist u, u \notin I\)</span> 且 <span class="arithmatex">\(u \notin N(I)\)</span>，于是 <span class="arithmatex">\(I \cup \{u\}\)</span> 是点独立集且 <span class="arithmatex">\(I\)</span> 真包含于 <span class="arithmatex">\(I \cup \{u\}\)</span>，矛盾。<br />
+极大点独立集一定是极小点支配集，考虑删去 <span class="arithmatex">\(I\)</span> 中的一个点 <span class="arithmatex">\(v\)</span>，由于 <span class="arithmatex">\(v \notin N(I - \{v\})\)</span>，故 <span class="arithmatex">\(N(I - \{v\}) \cup (I - \{v\}) \neq V\)</span>，删去更多点也是没用的，所以 <span class="arithmatex">\(I\)</span> 是极小点支配集。</p>
+</details>
+<details class="tip" open="open">
+<summary>定理8.9</summary>
+<p>对于任意一个图 <span class="arithmatex">\(G\)</span>：
+$$
+\alpha(G)\geq \gamma(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.28  证明定理 8.9</summary>
+<p>任取一个最大点独立集 <span class="arithmatex">\(I_M\)</span>，则 <span class="arithmatex">\(I_M\)</span> 是点支配集，所以 <span class="arithmatex">\(\alpha(G) = |I_M| \geq \gamma (G)\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.29  对于不含孤立点的图，点覆盖集是点支配集吗？</summary>
+<p>是的，任意一条边都与点覆盖集中的点相邻，由于没有孤立点，因此任意一个点要么是点覆盖集中的点，要么通过一条边与点覆盖集中的点相邻，因此是点支配集。</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.10</summary>
+<p>对于一个不含孤立点的图 <span class="arithmatex">\(G\)</span>：
+$$
+\beta(G) \geq \gamma(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.30  证明定理 8.10</summary>
+<p>设 <span class="arithmatex">\(C\)</span> 为最小点覆盖集，则 <span class="arithmatex">\(C\)</span> 也是点支配集，于是 <span class="arithmatex">\(\beta(G) = |C| \geq \gamma(G)\)</span></p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.11</summary>
+<p>对于任意一个图 <span class="arithmatex">\(G\)</span>：
+$$
+\beta(G) \geq \alpha'(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.31  证明定理 8.11</summary>
+<p>设 <span class="arithmatex">\(M\)</span> 为最大边独立集，则想要覆盖 <span class="arithmatex">\(M\)</span> 中每一条边，至少要选取 <span class="arithmatex">\(|M|\)</span> 个顶点，于是点覆盖集的大小至少为 <span class="arithmatex">\(|M|\)</span>，即 <span class="arithmatex">\(\beta(G) \geq \alpha'(G)\)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.32  若图 <span class="arithmatex">\(G\)</span> 的一个点覆盖集和一个边独立集的大小相等，则能得出什么结论？</summary>
+<p>点覆盖集恰好是边独立集每条边的其中一个端点组成的集合</p>
+</details>
+<details class="tip" open="open">
+<summary>König—Egerváry 定理</summary>
+<p>对于任意一个二分图 <span class="arithmatex">\(G\)</span>：
+$$
+\beta(G) = \alpha'(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.33  证明定理 8.12</summary>
+</details>
+<details class="note" open="open">
+<summary>定理 8.13</summary>
+<p>对于任意一个不含孤立点的图 <span class="arithmatex">\(G\)</span>：
+$$
+\alpha(G) \leq \beta'(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.34 证明定理 8.13</summary>
+<p>设 <span class="arithmatex">\(I\)</span> 是最大点独立集，则最少需要 <span class="arithmatex">\(I\)</span> 条边才能关联 <span class="arithmatex">\(I\)</span> 中所以顶点，于是 <span class="arithmatex">\(\alpha(G) \leq \beta'(G)\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 8.35  若图 <span class="arithmatex">\(G\)</span> 的一个点独立集和一个边覆盖集的大小相等，则能得出什么结论？</summary>
+<p>点独立集是最大的，边覆盖集是最小的且 <span class="arithmatex">\(\alpha(G) = \beta'(G)\)</span></p>
+</details>
+<details class="tip" open="open">
+<summary>定理 8.14</summary>
+<p>对于任意一个不含孤立点的二分图 <span class="arithmatex">\(G\)</span>：
+$$
+\alpha(G) = \beta'(G)
+$$</p>
+</details>
+<details class="note">
+<summary>思考题 8.36  证明定理 8.14</summary>
+<p>只需构造即可。设 <span class="arithmatex">\(G = \langle L \cup R, E \rangle\)</span> 为二分图，则 <span class="arithmatex">\(L, R\)</span> 中均为点独立集，且较大的那个大小为 <span class="arithmatex">\(\max \{|L|, |R|\}\)</span>；不是一般性，设 <span class="arithmatex">\(|L| \geq |R|\)</span>，我们选择</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  <!-- <h2 id="__comments">评论</h2> -->
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="zhqnb666/blog"
+    data-repo-id="R_kgDOM1tOlA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOM1tOlM4CitCX"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+
+<!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
+<!-- tikzjax.js -->
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+<!-- pseudocode.js -->
+<link rel="stylesheet" href="../../../assets/javascripts/pseudocode.css">
+<script src="../../../assets/javascripts/pseudocode.min.js"></script>
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+  integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script efer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+  integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      // customised options
+      // • auto-render specific keys, e.g.:
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '\\[', right: '\\]', display: true }
+      ],
+      // • rendering keys, e.g.:
+      throwOnError: false
+    });
+  });
+</script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script src="../../../assets/javascripts/pseudocode.js"></script>
+<script>
+  let pseudocodes = document.querySelectorAll(".language-pseudocode");
+  let options = {
+    lineNumber: true
+  };
+  pseudocodes.forEach((pse) => {
+    let code = pse.textContent;
+    let parentEl = pse.parentElement;
+    pseudocode.render(code, parentEl, options);
+    pse.remove();
+    $(parentEl).replaceWith($('<div>' + parentEl.innerHTML + '</div>'));
+  })
+</script>
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../7/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 图论笔记（七）">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                图论笔记（七）
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../9/" class="md-footer__link md-footer__link--next" aria-label="下一页: 图论笔记（九）">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                图论笔记（九）
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.tabs.link", "navigation.indexes", "navigation.tabs", "toc.follow", "navigation.top", "navigation.instant", "navigation.tabs", "navigation.path", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

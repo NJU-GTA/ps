@@ -1,0 +1,1541 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../">
+      
+      
+        <link rel="next" href="../6/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>图论笔记（五） - Graph Theorem and Algorithm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeline.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="darkgrey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Graph Theorem and Algorithm" class="md-header__button md-logo" aria-label="Graph Theorem and Algorithm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Graph Theorem and Algorithm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              图论笔记（五）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="darkgrey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  问求相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Graph Theorem and Algorithm" class="md-nav__button md-logo" aria-label="Graph Theorem and Algorithm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Graph Theorem and Algorithm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    问求相关
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            问求相关
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GTA
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            GTA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    图论笔记（五）
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（五）
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配和最大匹配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="匹配和最大匹配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      思考题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      算法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      匈牙利算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hopcroft-karp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hopcroft-Karp 算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      花算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      完美匹配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="完美匹配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hall 定理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tutte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutte 定理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      本章小结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（六）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（七）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（八）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（九）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配和最大匹配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="匹配和最大匹配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      思考题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      算法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      匈牙利算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hopcroft-karp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hopcroft-Karp 算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      花算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      完美匹配
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="完美匹配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hall" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hall 定理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tutte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutte 定理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      本章小结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+<h1 id="_1">图论笔记（五）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">匹配和最大匹配<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">定义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><strong>匹配(matching)</strong>：图 <span class="arithmatex">\(G\)</span> 的边子集 <span class="arithmatex">\(M \subseteq E\)</span>，<span class="arithmatex">\(M\)</span> 中的边两两不相邻<br />
+<strong>饱和(saturated)\已匹配(matched)</strong>：匹配 <span class="arithmatex">\(M\)</span> 中边的端点称为被 <span class="arithmatex">\(M\)</span> 饱和，或已匹配<br />
+<strong>极大匹配(maximal matching)</strong>：不是任何图 <span class="arithmatex">\(G\)</span> 的匹配的真子集<br />
+<strong>最大匹配(maximum matching)</strong>：边的数量最多的匹配  </p>
+<h3 id="_4">思考题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<details class="note" open="open">
+<summary>思考题 5.1  每个图都有匹配吗?</summary>
+<p>是的，考虑 <span class="arithmatex">\(M = \emptyset\)</span></p>
+</details>
+<p>又到了经典的 Peterson 时间</p>
+<!-- $$\operatorname{ker} f=\{g\in G:f(g)=e_{H}\}{\mbox{.}}$$
+
+<div class="language-latex highlight"><span class="filename">block syntax</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sb">$$</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">\operatorname</span><span class="nb">{ker} f</span><span class="o">=</span><span class="nv">\{</span><span class="nb">g</span><span class="nv">\in</span><span class="nb"> G:f</span><span class="o">(</span><span class="nb">g</span><span class="o">)=</span><span class="nb">e_{H}</span><span class="nv">\}</span><span class="nb">{</span><span class="nv">\mbox</span><span class="nb">{.}}</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="s">$$</span>
+</span></code></pre></div>
+
+<div class="result" markdown>
+
+$$
+\operatorname{ker} f=\{g\in G:f(g)=e_{H}\}{\mbox{.}}
+$$
+
+</div>
+
+The homomorphism $f$ is injective if and only if its kernel is only the
+singleton set $e_G$, because otherwise $\exists a,b\in G$ with $a\neq b$ such
+that $f(a)=f(b)$. -->
+
+<details class="note" open="open">
+<summary>思考题 5.2  图 1.6（a）所示的彼得森图的最大匹配有多少条边？</summary>
+<p>5 条. Peterson 图共 10 个顶点，匹配最多有 5 条边，同时 <span class="arithmatex">\(M = \{v_1 v_6, v_2 v_7, v_3 v_8, v_4 v_9, v_5 v_{10}\}\)</span> 是含有 5 条边的匹配
+<img alt="peterson graph" src="../peterson.png" /></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.3  阶为 <span class="arithmatex">\(n\)</span> 的图的最大匹配至多有多少条边？</summary>
+<p>至多有 <span class="arithmatex">\(\lfloor \frac{n}{2} \rfloor\)</span> 条边，我们用 <span class="arithmatex">\(\operatorname{ends}(e)\)</span> 表示边 <span class="arithmatex">\(e\)</span> 的端点组成的集合，则
+$$
+\Big|\bigcup_{e \in M} \operatorname{ends}(e)\Big| = \sum_{e \in M} |\operatorname{ends}(e)| = 2|M| \leq n
+$$
+故 <span class="arithmatex">\(|M| \leq \lfloor \frac{n}{2} \rfloor\)</span>. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.4  完全图 <span class="arithmatex">\(K_n\)</span> 的最大匹配有多少条边？</summary>
+<p>由上一小题我们知道 <span class="arithmatex">\(K_n\)</span> 最大匹配至多有 <span class="arithmatex">\(\lfloor \frac{n}{2} \rfloor\)</span> 条边. <br />
+设其顶点集 <span class="arithmatex">\(V=\{v_1,v_2,...,v_n\}\)</span>，则 <span class="arithmatex">\(M=\{v_1 v_2, v_3 v_4, ..., v_{2 \lfloor n / 2\rfloor - 1} v_{2 \lfloor n / 2\rfloor}\}\)</span> 满足 <span class="arithmatex">\(|M| = \lfloor \frac{n}{2} \rfloor\)</span>. <br />
+因此最大匹配恰有 <span class="arithmatex">\(\lfloor \frac{n}{2} \rfloor\)</span> 条边. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.5  完全二分图 <span class="arithmatex">\(K_{m,n}\)</span> 的最大匹配有多少条边？</summary>
+<p>设对应的顶点集划分为 <span class="arithmatex">\(X = \{x_1, x_2, ..., x_m\}, Y = \{y_1, y_2, ..., y_n\}\)</span>，其中 <span class="arithmatex">\(|X|=m, |Y| = n\)</span><br />
+由于 <span class="arithmatex">\(M\)</span> 中每一条边都有一个端点在 <span class="arithmatex">\(X\)</span> 中，若 <span class="arithmatex">\(|M| &gt; m\)</span>，根据鸽笼原理，必有两条边共享 <span class="arithmatex">\(X\)</span> 中的一个顶点，显然不可能，故 <span class="arithmatex">\(|M| \leq m\)</span>. 同理 <span class="arithmatex">\(|M| \leq n\)</span>，于是 <span class="arithmatex">\(|M| \leq \min \{m, n\}\)</span><br />
+令 <span class="arithmatex">\(s = \min \{m,n\}\)</span>，则 <span class="arithmatex">\(M = \{x_1 y_1, x_2 y_2, ..., x_s y_s\}\)</span> 满足 <span class="arithmatex">\(|M| = \min \{m, n\}\)</span>，即最大匹配有 <span class="arithmatex">\(\min \{m, n\}\)</span> 条边. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.6  图的两个匹配的并集的边导出子图的每个连通分支的结构有什么特征？</summary>
+<p>在两个匹配的并集的边导出子图中，每个顶点的度要么是 1，要么是 2.<br />
+对于任意一个含有 <span class="arithmatex">\(n'\)</span> 个顶点的连通分支 <span class="arithmatex">\(C\)</span>，度为 1 的顶点数目至多为 2，否则
+$$
+\epsilon (C) = \frac{1}{2}\sum_{v \in V(C)} d(v) &lt; \frac{1}{2}[1 \times 2 + 2 \times (n' - 2)] = n'-1
+$$
+违背了 <span class="arithmatex">\(C\)</span> 连通的要求（见<strong>练习 2.1</strong>），另外，由于 <span class="arithmatex">\(\sum_{v \in V(C)} d(v)\)</span> 为偶数，度为 1 的顶点数只能是 0 或 2. <br />
+如果为 0，我们可以找到一条欧拉回路，这条回路不会重复经过任何点且包含了 <span class="arithmatex">\(C\)</span> 的所有边； <br />
+如果为 2，我们可以找到一条欧拉迹，同样不会重复经过任何点且包含了 <span class="arithmatex">\(C\)</span> 的所有边. <br />
+因此连通分支要么是一条路，要么是一个圈. </p>
+</details>
+<p>说得好，但是对称差是什么</p>
+<p><strong>Definition</strong>  对称差（用 <span class="arithmatex">\(\Delta\)</span> 表示）定义为：<span class="arithmatex">\(A \operatorname{\Delta} B = A \cup  B - A \cap B\)</span></p>
+<details class="note" open="open">
+<summary>思考题 5.7  图的两个匹配的对称差的边导出子图的每个连通分支的结构有什么特征？</summary>
+<p>似乎没什么区别（？，<span class="arithmatex">\(M_1 \cap M_2\)</span> 也是一个匹配，在 <span class="arithmatex">\(M_1 \cup M_2\)</span> 中删去这些边不改变度要么为 1 要么为 2 的事实（删到度为 0 的点不会在边导出子图中）</p>
+</details>
+<h3 id="_5">定义<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>给定图 <span class="arithmatex">\(G = \langle V, E \rangle\)</span> 以及匹配 <span class="arithmatex">\(M\)</span><br />
+<strong>交错路(alternating path)</strong>：交替经过 <span class="arithmatex">\(M\)</span> 和 <span class="arithmatex">\(E \setminus M\)</span> 中的边的路<br />
+<strong>增广路(augmenting path)</strong>：起点和终点未被匹配的交错路</p>
+<details class="note" open="open">
+<summary>思考题 5.8  每个匹配都有交错路和增广路吗？若有，则唯一吗？</summary>
+<p><strong>交错路</strong>：如果 <span class="arithmatex">\(G\)</span> 不为平凡图，只需任取一条边即为交错路；对于任意含有至少两条边的图 <span class="arithmatex">\(G\)</span>，各取两个边即构成两条交错路<br />
+<strong>增广路</strong>：不一定有，例如</p>
+<div class="arithmatex">\[
+V = \{v_1,v_2,v_3,v_4\}, \quad E = \{v_1 v_2, v_3 v_4\},\quad M=E
+\]</div>
+<p>有也不一定唯一，例如</p>
+<div class="arithmatex">\[
+V = \{v_1,v_2,v_3,v_4\}, \quad E = \{v_1 v_2, v_2 v_3, v_3 v_4, v_1 v_3, v_2 v_4\},\quad M=\{v_2 v_3\}
+\]</div>
+<p><span class="arithmatex">\(v_1 v_2 v_3 v_4\)</span> 以及 <span class="arithmatex">\(v_1 v_3 v_2 v_4\)</span> 均为增广路</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.9  如何利用增广路得到一个更大的匹配？</summary>
+<p>设增广路经过的边的集合为 <span class="arithmatex">\(P\)</span>，则 <span class="arithmatex">\(M \Delta P\)</span> 是一个更大的匹配<br />
+首先 <span class="arithmatex">\(M \Delta P\)</span> 仍是匹配，<span class="arithmatex">\(M - P\)</span> 的边不会相邻，<span class="arithmatex">\(P - M\)</span> 内的也不会相邻. 对于 <span class="arithmatex">\(P - M\)</span> 内的边，其中一端为 <span class="arithmatex">\(P \cap M\)</span> 中边的顶点，另一端为未匹配的顶点，因此 <span class="arithmatex">\(P - M\)</span> 中的边一定不会和 <span class="arithmatex">\(M - P\)</span> 中的边有公共点<br />
+其次 <span class="arithmatex">\(|M \Delta P| &gt; |M|\)</span>，由增广路的定义容易知道 <span class="arithmatex">\(|P - M| = |P \cap M| + 1\)</span>，故 <span class="arithmatex">\(|M \Delta P| = |M|+1\)</span></p>
+</details>
+<details class="tip" open="open">
+<summary>贝尔热定理（Berge Theorem）</summary>
+<p>对于图 <span class="arithmatex">\(G = \langle V, E \rangle\)</span> 和匹配 <span class="arithmatex">\(M \subseteq E\)</span>，<span class="arithmatex">\(M\)</span> 是最大匹配当且仅当 <span class="arithmatex">\(G\)</span> 不含 <span class="arithmatex">\(M\)</span> 增广路<br />
+A matching <span class="arithmatex">\(M\)</span> in a graph <span class="arithmatex">\(G\)</span> is a maximum matching if and only if <span class="arithmatex">\(G\)</span> contains no <span class="arithmatex">\(M\)</span>-augmenting path.</p>
+</details>
+<p><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字对齐</title>
+    <style>
+        .left {
+            float: left;
+        }
+        .right {
+            float: right;
+        }
+        .container {
+            width: 100%;
+            overflow: hidden; /<em> 清除浮动 </em>/
+        }
+    </style>
+</head></p>
+<details class="note" open="open">
+<summary>思考题 5.10  证明贝尔热定理</summary>
+<p><div class="container">
+    <span class="left"><strong>前推后</strong>：若 <span class="arithmatex">\(M\)</span> 是最大匹配且存在 <span class="arithmatex">\(M\)</span> 增广路，可利用<strong>思考题 5.9</strong>构造边数更多的匹配，矛盾 <br />
+<strong>后推前</strong>：如果 <span class="arithmatex">\(M\)</span> 不是最大匹配，令 <span class="arithmatex">\(M'\)</span> 为一个最大匹配. 考虑 <span class="arithmatex">\(H = G[M \Delta M']\)</span>，由于 <span class="arithmatex">\(|M'|&gt;|M|\)</span>，必存在 <span class="arithmatex">\(H\)</span> 的连通分支 <span class="arithmatex">\(C\)</span>，<span class="arithmatex">\(|E(C)\cap M| &lt; |E(C)\cap M'|\)</span>，此时 <span class="arithmatex">\(C\)</span> 不可能是一个圈（否则有 <span class="arithmatex">\(|E(C)\cap M| = |E(C)\cap M'|\)</span>），因此必为路. 同时这条路还是交错路，起点终点均为 <span class="arithmatex">\(M'\)</span> 匹配. 注意到起点终点的度均为 1，且唯一关联的边在 <span class="arithmatex">\(M'\)</span> 中，所以未被 <span class="arithmatex">\(M\)</span> 匹配，于是 <span class="arithmatex">\(C\)</span> 就正好是一条增广路. 
+    <span class="right"><span class="arithmatex">\(\square\)</span></span>
+</div></p>
+</details>
+<h2 id="_6">算法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">匈牙利算法<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>匈牙利算法伪代码如下</p>
+<pre><code class="language-pseudocode">
+\begin{algorithm}
+\caption{Hungarian Algorithm}
+\begin{algorithmic}
+\Input A bipartite graph $G = \langle X \cup Y, E \rangle$
+\Initialize $M \gets \emptyset$
+\Procedure{Hungarian}{$G$}
+    \Repeat
+        \For {each vertex $u \in (X \cup Y)$}
+            \State $u.\text{visited} \gets $ \false
+        \EndFor
+        \For {each $r \in X$}
+            \If {$r.\text{visited} =$ \false$\text{ and } r \text{ is not matched}$}
+                \State $P \gets$ \textsc{Dfsap}$(G, r, M)$
+                \If {$P \neq $ null}
+                    \State $M \gets \{e:e \text{ is an edge on }P\}\operatorname{\Delta} M$
+                    \State $\textbf{break}$
+                \EndIf
+            \Endif
+        \EndFor
+    \Until{$P = $ null}
+    \Return $M$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+</code></pre>
+
+<pre><code class="language-pseudocode">
+\begin{algorithm}
+\caption{DFSAP Algorithm}
+\begin{algorithmic}
+\Input A bipartite graph $G = \langle X \cup Y, E \rangle$, vertex $u$ and matching $M$
+\Procedure{Dfsap}{$G, u, M$}
+    \State $u.\text{visited} \gets $ \true
+    \If {$u$ is not matched and $u$ is not the root of DFS tree}
+        \Return the path from the root to $u$ in DFS tree
+    \Else
+        \For {each $(u, v) \in E$}
+            \If {$v.\text{visited} = $ \false and $(u \in X$ xor $(u, v) \in M)$}
+                \State $P_v \gets$ \textsc{Dfsap}$(G, v, M)$
+                \If {$P_v \neq $ null}
+                    \Return $P_v$
+                \EndIf
+            \EndIf
+        \EndFor
+        \Return null
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+</code></pre>
+
+<!-- ![Hungarian Algorithm](ch5/hungarian.png) -->
+
+<!-- ![dfsap](ch5/dfsap.png)
+
+![asp](ch5/asp.png) -->
+
+<details class="note" open="open">
+<summary>思考题 5.11  do-while 循环运行多少轮?</summary>
+<p>设最大匹配有 <span class="arithmatex">\(m\)</span> 条边，由于 <span class="arithmatex">\(|M|\)</span> 每轮增加 1，循环将会进行 <span class="arithmatex">\(m\)</span> 轮. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.12  如何高效地判定 DFS 树从根顶点到顶点 <span class="arithmatex">\(v\)</span> 的路是 <span class="arithmatex">\(M\)</span> 交错路</summary>
+<p>可以去掉 DFS 树中一些不必要的分支，保证根顶点到树中其他任意顶点的路均为交错路<br />
+采用染色法，将根顶点染红色，DFS 进行过程中，我们安装如下规则更新顶点<br />
+如果当前顶点为红色，我们只扩展当前顶点的邻居中还未访问过的，将扩展的节点染为蓝色<br />
+如果当前顶点为蓝色，我们只扩展当前顶点的邻居中已经被 <span class="arithmatex">\(M\)</span> 匹配的，将扩展的节点染为红色  </p>
+</details>
+<p><strong>声明</strong>：上一题对 DFS 树进行了裁剪，不一定覆盖 <span class="arithmatex">\(G\)</span> 中所有点，下面的证明中我将采用这个树</p>
+<details class="note" open="open">
+<summary>思考题 5.13  当对顶点 <span class="arithmatex">\(r\)</span> 调用 DFSAP 算法返回 null 时，是否已尝试所有以 <span class="arithmatex">\(r\)</span> 为起点的 <span class="arithmatex">\(M\)</span> 交错路? 会遗漏 <span class="arithmatex">\(M\)</span> 增广路吗?</summary>
+<p>不会尝试所有交错路，如果有一个红色节点 <span class="arithmatex">\(x\)</span> 到一个蓝色节点 <span class="arithmatex">\(y\)</span> 有一条后向边，那么根节点到 <span class="arithmatex">\(x\)</span> 再到 <span class="arithmatex">\(y\)</span> 就是一条未尝试过的交错路<br />
+但不会遗漏增广路，我们约定以下几个记号</p>
+<ul>
+<li><span class="arithmatex">\(R(T)\)</span>    DFS 树中被标记为红色的顶点</li>
+<li><span class="arithmatex">\(B(T)\)</span>    DFS 树中被标记为蓝色的顶点</li>
+<li><span class="arithmatex">\(N(X)\)</span>    顶点集 <span class="arithmatex">\(X\)</span> 中的点在图 <span class="arithmatex">\(G\)</span> 中所有的邻居</li>
+</ul>
+<p>我们注意到：</p>
+<ul>
+<li><span class="arithmatex">\(B(T) \subseteq N(R(T))\)</span>，因为所有蓝色节点都由红色节点扩展而来；</li>
+<li><span class="arithmatex">\(N(R(T)) \subseteq R(T) \cup B(T)\)</span>，这是由 DFS 性质决定的；</li>
+<li><span class="arithmatex">\(N(R(T)) \cap R(T) = \emptyset\)</span>，这是因为 <span class="arithmatex">\(G\)</span> 是二分图，如果两个红色节点相邻会形成一个奇圈</li>
+</ul>
+<p>由上述三个结论我们知道 <span class="arithmatex">\(N(R(T)) = B(T)\)</span><br />
+假设有以 <span class="arithmatex">\(u\)</span> 为起点的增广路被遗漏，设该条路中第一个不在 <span class="arithmatex">\(T\)</span> 中的顶点为 <span class="arithmatex">\(z\)</span>（这样的 <span class="arithmatex">\(z\)</span> 必定存在，因为路的终点不被 <span class="arithmatex">\(M\)</span> 匹配，必定不在树中），那么 <span class="arithmatex">\(z\)</span> 的前一个顶点 <span class="arithmatex">\(w\)</span> 只能是蓝色（<span class="arithmatex">\(N(R(T)) = B(T)\)</span>），但蓝色节点应该扩展所有已匹配的邻居，所以 <span class="arithmatex">\(z\)</span> 未被匹配（即 <span class="arithmatex">\(z\)</span> 为终点）. 增广路中 <span class="arithmatex">\(w\)</span> 到 <span class="arithmatex">\(u\)</span> 的部分边数为偶数，而树中 <span class="arithmatex">\(w\)</span> 到 <span class="arithmatex">\(u\)</span> 的路为奇数，这会构成一个奇圈，与 <span class="arithmatex">\(G\)</span> 为二分图矛盾. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.14  只从顶点子集 <span class="arithmatex">\(X\)</span> 中的顶点出发运行 DFSAP 算法会遗漏 <span class="arithmatex">\(M\)</span> 增广路吗?</summary>
+<p>不会，根据前面的说明，DFSAP 不会遗漏以 <span class="arithmatex">\(X\)</span> 中顶点为起点的增广路，假设遗漏了以 <span class="arithmatex">\(Y\)</span> 中顶点为起点的增广路 <span class="arithmatex">\(P\)</span>，那么 <span class="arithmatex">\(P\)</span> 的终点一定在 <span class="arithmatex">\(X\)</span> 中（因为增广路的长度必为奇数），将 <span class="arithmatex">\(P\)</span> 倒过来就得到以 <span class="arithmatex">\(X\)</span> 中顶点为起点的增广路，矛盾</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.15  证明匈牙利算法输出的集合 <span class="arithmatex">\(M\)</span> 是图 <span class="arithmatex">\(G\)</span> 的最大匹配</summary>
+<p>根据前面的思考题，我们知道 <span class="arithmatex">\(M\)</span> 始终是匹配，每经过一次 do-while 循环 <span class="arithmatex">\(|M|\)</span> 就加一，所以循环至多执行轮数等于最大匹配边数，算法会终止. <br />
+算法终止时，<span class="arithmatex">\(P = \text{null}\)</span> 说明不存在 <span class="arithmatex">\(M\)</span> 增广路，利用贝尔热定理知 <span class="arithmatex">\(M\)</span> 是最大匹配. </p>
+</details>
+<p>匈牙利算法的时间复杂度为 <span class="arithmatex">\(O(n(n+m))\)</span>. </p>
+<h3 id="hopcroft-karp">Hopcroft-Karp 算法<a class="headerlink" href="#hopcroft-karp" title="Permanent link">&para;</a></h3>
+<!-- $$
+\begin{array}{ll}
+1 & \textbf{Input. } \text{An array } A \text{ consisting of }n\text{ elements.} \\
+2 & \textbf{Output. } A\text{ will be sorted in nondecreasing order stably.} \\
+3 & \textbf{Method. }  \\
+4 & flag\gets True\\
+5 & \textbf{while }flag\\
+6 & \qquad flag\gets False\\
+7 & \qquad\textbf{for }i\gets1\textbf{ to }n-1\\
+8 & \qquad\qquad\textbf{if }A[i]>A[i + 1]\\
+9 & \qquad\qquad\qquad flag\gets True\\
+10 & \qquad\qquad\qquad \text{Swap } A[i]\text{ and }A[i + 1]
+\end{array}
+$$ -->
+<p>伪代码如下：</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+1 &amp; M = \emptyset\\
+2 &amp; \textbf{repeat}\\
+3 &amp; \qquad \text{let }\mathscr{P}=\{P_1,P_2,...,P_k\} \text{ be a maximal set of vertex-disjoint 
+shortest $M$-augmenting paths}\\
+4 &amp; \qquad M=M\operatorname{\Delta}\,\,(P_1 \cup P_2 \cup \cdots \cup P_k)\\
+5 &amp; \textbf{until}\ \mathscr{P}=\emptyset\\
+6 &amp; \textbf{return}\ M
+\end{array}
+\]</div>
+<p>注意这里 <span class="arithmatex">\(\mathscr{P}\)</span> 只需要是极大的就能达到 <span class="arithmatex">\(O(\sqrt{|V|})\)</span> 的循环轮数，未必需要最大</p>
+<p>设 <span class="arithmatex">\(G = \langle L \cup R, E \rangle\)</span> 为二分图，<span class="arithmatex">\(M\)</span> 是一个匹配，找出 <span class="arithmatex">\(\mathscr{P}\)</span> 需要三步  <br />
+<strong>Step1.</strong> 新建一个有向图 <span class="arithmatex">\(G_M = \langle V, E_M \rangle\)</span>，其中<br />
+<span class="arithmatex">\(E_M = \{(l, r):l\in L, r\in R, (l, r)\in E-M\}\cup\{(r,l):l\in L, r\in R, (l,r)\in M\}\)</span><br />
+<strong>Step2.</strong> 从 <span class="arithmatex">\(\{l:l\in L\text{ and }l\text{ is not matched by }M\}\)</span> 出发对 <span class="arithmatex">\(G_M\)</span> 应用 BFS，设 <span class="arithmatex">\(q\)</span> 为 BFS 找到 <span class="arithmatex">\(R\)</span> 中未被匹配的点的最小深度，则 BFS 的深度超过 <span class="arithmatex">\(q\)</span> 时就可以终止，最后得到 BFS 的图记为 <span class="arithmatex">\(H\)</span><br />
+<strong>Step3.</strong> 对 <span class="arithmatex">\(H^T\)</span>（将 <span class="arithmatex">\(H\)</span> 中箭头反向）最后一层的未匹配的节点应用 DFS 寻找增广路</p>
+<p>算法的复杂度分析如下</p>
+<h3 id="_8">花算法<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<details class="note" open="open">
+<summary>思考题 5.16 为什么二分图不存在上述问题?</summary>
+<p>因为这会导致奇圈，见思考题 5.13</p>
+</details>
+<h2 id="_9">完美匹配<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">定义<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><strong>完美匹配</strong>：<span class="arithmatex">\(M\)</span> 饱和顶点集中的所有顶点<br />
+<span class="arithmatex">\(N(V'):=\{v:\exists u \in V', uv \in E\}\)</span></p>
+<details class="note" open="open">
+<summary>思考题 5.21  完美匹配一定是最大匹配吗？最大匹配一定是完美匹配吗？</summary>
+<p>完美匹配一定是最大匹配，反之不一定</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.22  每个图都有完美匹配吗？完美匹配存在的必要条件有哪些？</summary>
+<p>不一定，首先图的阶为偶数</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.23  图1.6（a）所示的彼得森图有完美匹配吗？</summary>
+<p>有，<span class="arithmatex">\(M = \{v_1 v_6, v_2 v_7, v_3 v_8, v_4 v_9, v_5 v_{10}\}\)</span>
+<img alt="peterson" src="../peterson.png" /></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.24  阶为n的图的完美匹配有多少条边？</summary>
+<p><span class="arithmatex">\(n / 2\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.25  偶数阶完全图 <span class="arithmatex">\(K_{2n}\)</span> 一定有完美匹配吗？若有，则最多有多少个两两不相交的完美匹配？</summary>
+<p>一定有，最多有 <span class="arithmatex">\(\frac{2n(2n-1)/2}{n} = (2n-1)\)</span> 个不相交的完美匹配。<br />
+事实上，令 <span class="arithmatex">\(V = \{v_1, v_2, ..., v_{2n}\}\)</span>，</p>
+<div class="arithmatex">\[
+    M_{k} = \{ v_{i} v_{(i+\lceil k/2 \rceil) \operatorname{mod} n}:i=1,2,...,n, i \equiv k (\operatorname{mod} 2)\}\quad (k = 1,2,...,2k-1)
+\]</div>
+<p>是 <span class="arithmatex">\(2k - 1\)</span> 个相互无公共边的完美匹配</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.26  偶数阶非空正则图一定有完美匹配吗？</summary>
+<p>不一定，见如下的 Sylvester 图<br />
+<img alt="sylvester" src="../ch5/Sylvester.png" /></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.27  偶数阶欧拉图和偶数阶哈密尔顿图一定有完美匹配吗？</summary>
+<p>偶数阶欧拉图不一定有，例如<br />
+<img src="../ch5/eulerian.svg" width=80%><br />
+但偶数阶哈密尔顿图一定有，只需取哈密尔顿圈上不相邻的 <span class="arithmatex">\(n / 2\)</span> 条边即可</p>
+</details>
+<!-- <script type="text/tikz">
+    \begin{tikzpicture}
+    \node[shape=circle,fill=lightgray](a) at (0, 0) {$v_1$};
+    \node[shape=circle,fill=lightgray](b) at (1.5, 1) {$v_2$};
+    \node[shape=circle,fill=lightgray](c) at (1.5,-1) {$v_3$};
+    \node[shape=circle,fill=lightgray](d) at (3, 0) {$v_4$};
+    \node[shape=circle,fill=lightgray](e) at (4.5, 1) {$v_5$};
+    \node[shape=circle,fill=lightgray](f) at (4.5,-1) {$v_6$};
+    \node[shape=circle,fill=lightgray](g) at (6, 0) {$v_6$};
+    \node[shape=circle,fill=lightgray](h) at (7.5, 1) {$v_7$};
+    \node[shape=circle,fill=lightgray](i) at (7.5,-1) {$v_8$};
+    \node[shape=circle,fill=lightgray](j) at (9, 0) {$v_9$};
+    \draw[-,very thick,lightgray] (a)-- (b);
+    \draw[-,very thick,lightgray] (a)-- (c);
+    \draw[-,very thick,lightgray] (c)-- (d);
+    \draw[-,very thick,lightgray] (b)-- (d);
+    \draw[-,very thick,lightgray] (d)-- (e);
+    \draw[-,very thick,lightgray] (d)-- (f);
+    \draw[-,very thick,lightgray] (e)-- (g);
+    \draw[-,very thick,lightgray] (f)-- (g);
+    \draw[-,very thick,lightgray] (g)-- (h);
+    \draw[-,very thick,lightgray] (g)-- (i);
+    \draw[-,very thick,lightgray] (h)-- (j);
+    \draw[-,very thick,lightgray] (i)-- (j);
+    \end{tikzpicture}
+</script> -->
+
+<details class="note" open="open">
+<summary>思考题 5.28  图的两个完美匹配的对称差的边导出子图的每个连通分支的结构有什么特征？</summary>
+<p>均为圈，设 <span class="arithmatex">\(M_1\)</span> 和 <span class="arithmatex">\(M_2\)</span> 为两个完美匹配，<span class="arithmatex">\(H = G[M_1 \operatorname{\Delta} M_2]\)</span>，<span class="arithmatex">\(C\)</span> 为 <span class="arithmatex">\(H\)</span> 的一个连通分支<br />
+对于 <span class="arithmatex">\(C\)</span> 中的点 <span class="arithmatex">\(u\)</span>，<span class="arithmatex">\(u\)</span> 在 <span class="arithmatex">\(M_1\)</span> 中关联的边和在 <span class="arithmatex">\(M_2\)</span> 中关联的边不同，否则 <span class="arithmatex">\(u\)</span> 的度为 0，矛盾. 因此 <span class="arithmatex">\(u\)</span> 的度为 2，所以 <span class="arithmatex">\(C\)</span> 为一个圈. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.29  树一定有完美匹配吗？若有，则最多有多少个完美匹配？</summary>
+<p>不一定，考虑 <span class="arithmatex">\(P_3\)</span><br />
+若有，则至多一个，否则两个完美匹配取对称差产生圈</p>
+</details>
+<h3 id="hall">Hall 定理<a class="headerlink" href="#hall" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">霍尔定理(Hall's theorem)</p>
+<p>对于二分图 <span class="arithmatex">\(G = \langle X \cup Y, E \rangle\)</span>，<span class="arithmatex">\(G\)</span> 有饱和顶点子集 <span class="arithmatex">\(X\)</span> 中所有顶点的匹配当且仅当对于任意顶点子集 <span class="arithmatex">\(S \subseteq X\)</span>，<span class="arithmatex">\(|N(S)| \geq |S|\)</span>. <br />
+A bipartite graph <span class="arithmatex">\(G := G[X, Y]\)</span> has a matching which covers every vertex in <span class="arithmatex">\(X\)</span> if and only if
+$$
+|N(S)| \geq |S| \text{ for all } S \subseteq X
+$$</p>
+</div>
+<details class="note" open="open">
+<summary>思考题 5.30  证明 Hall 定理</summary>
+<p>令 <span class="arithmatex">\(G = \langle X \cup Y, E \rangle\)</span>，若存在匹配 <span class="arithmatex">\(M\)</span> 饱和 <span class="arithmatex">\(X\)</span> 中所有点，那么 <span class="arithmatex">\(X\)</span> 中每一个点都与 <span class="arithmatex">\(Y\)</span> 中一个点匹配，并且它们两两不同，于是 <span class="arithmatex">\(|N(X)| \geq |X|\)</span>.<br />
+反过来，如果不存在匹配饱和 <span class="arithmatex">\(X\)</span> 中所有顶点，令 <span class="arithmatex">\(M'\)</span> 为最大匹配，存在 <span class="arithmatex">\(u \in X\)</span> 未被 <span class="arithmatex">\(M'\)</span> 匹配. 令 <span class="arithmatex">\(Z\)</span> 为以 <span class="arithmatex">\(u\)</span> 为起点的 <span class="arithmatex">\(M'\)</span> 交错路可到达的所有顶点，由于 <span class="arithmatex">\(M'\)</span> 为最大匹配，故 <span class="arithmatex">\(Z\)</span> 中只有一个未被匹配的点 <span class="arithmatex">\(u\)</span>. 设 <span class="arithmatex">\(R = X \cap Z, B = Y \cap Z\)</span>，于是 <span class="arithmatex">\(M'\)</span> 匹配 <span class="arithmatex">\(R - \{u\}\)</span> 和 <span class="arithmatex">\(B\)</span> 中的点，因此
+$$
+|N(R)| = |B| = |R|-1&lt;|R|
+$$
+霍尔定理成立. </p>
+</details>
+<p>此处再给出几个推论</p>
+<div class="admonition abstract">
+<p class="admonition-title">推论 1</p>
+<p>任意二分图 <span class="arithmatex">\(G = \langle X \cup Y, E \rangle\)</span> 有完美匹配当且仅当 <span class="arithmatex">\(|X| = |Y|\)</span> 且对于任意 <span class="arithmatex">\(S \subseteq X\)</span>，<span class="arithmatex">\(|N(S)| \geq |S|\)</span>. <br />
+<strong>证明</strong>：若 <span class="arithmatex">\(G\)</span> 有完美匹配，则匹配中任意一条边都是一端在 <span class="arithmatex">\(X\)</span> 中，一端在 <span class="arithmatex">\(Y\)</span> 中，必须 <span class="arithmatex">\(|X| = |Y|\)</span>，后半句利用 Hall 定理即可.<br />
+反之，若 <span class="arithmatex">\(|X| = |Y|\)</span> 且对于任意 <span class="arithmatex">\(S \subseteq X\)</span>，<span class="arithmatex">\(|N(S)| \geq |S|\)</span>，则存在匹配 <span class="arithmatex">\(M\)</span> 饱和 <span class="arithmatex">\(X\)</span> 中所有点，每个 <span class="arithmatex">\(X\)</span> 中的点均与一个 <span class="arithmatex">\(Y\)</span> 中的点匹配，且他们互不相同，而 <span class="arithmatex">\(|X|=|Y|\)</span>，所以 <span class="arithmatex">\(Y\)</span> 中所有点也被饱和. </p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">推论 2</p>
+<p>任意非空正则二分图均有完美匹配. <br />
+<strong>证明</strong>：设 <span class="arithmatex">\(G = \langle X\cup Y, E \rangle\)</span> 为非空 <span class="arithmatex">\(r\)</span> 正则二分图，于是 <span class="arithmatex">\(|E|=r|X|=r|Y|\)</span>，即 <span class="arithmatex">\(|X|=|Y|\)</span>.<br />
+令 <span class="arithmatex">\(S\)</span> 为 <span class="arithmatex">\(X\)</span> 的任意子集，<span class="arithmatex">\(E_1\)</span> 为 <span class="arithmatex">\(S\)</span> 中点关联的边组成的集合，<span class="arithmatex">\(E_2\)</span> 为 <span class="arithmatex">\(N(S)\)</span> 中点关联的边组成的集合，于是 <span class="arithmatex">\(E_1 \subseteq E_2\)</span>，我们有
+$$
+r |S| = |E_1| \leq |E_2| = r|N(S)|
+$$
+由于 <span class="arithmatex">\(k \geq 1\)</span>，故 <span class="arithmatex">\(|N(S)| \geq |S|\)</span>，由<strong>推论 1</strong>知 <span class="arithmatex">\(G\)</span> 有完美匹配. </p>
+</div>
+<details class="note" open="open">
+<summary>思考题 5.31  非空 <span class="arithmatex">\(r\)</span> 正则二分图一定有完美匹配吗？若有，则最多有多少个两两不相交的完美匹配？</summary>
+<p>一定有完美匹配，最多有 <span class="arithmatex">\(\frac{nr}{n}=r\)</span> 个，并且此界可以达到，令 <span class="arithmatex">\(X = \{x_1, ..., x_n\}, Y = \{y_1, ..., y_n\}\)</span>，取<br />
+<span class="arithmatex">\(\displaystyle \begin{align}
+    M_k = \left\{x_i y_{(i+k-1) \operatorname{mod} n:i = 1,2,...,n}\right\}\quad (k = 1,2,...,r), \quad E = \bigcup_{i = 1}^{r} M_i
+\end{align}\)</span><br />
+则 <span class="arithmatex">\(M_1, ..., M_r\)</span> 恰为 <span class="arithmatex">\(r\)</span> 个两两不交的完美匹配. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.32  完全二分图 <span class="arithmatex">\(K_{n,n}\)</span> 一定有完美匹配吗？若有，则最多有多少个两两不相交的完美匹配？</summary>
+<p>有，最多 <span class="arithmatex">\(n\)</span> 个</p>
+</details>
+<h3 id="tutte">Tutte 定理<a class="headerlink" href="#tutte" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(o(G)\)</span>：<span class="arithmatex">\(G\)</span> 中奇数阶连通分支的数量</p>
+<div class="admonition tip">
+<p class="admonition-title">塔特定理(Tutte's theorem)</p>
+<p>对于图 <span class="arithmatex">\(G = \langle V, E \rangle\)</span>，<span class="arithmatex">\(G\)</span> 有完美匹配当且仅当对于任意顶点子集 <span class="arithmatex">\(S \subseteq V\)</span>，<span class="arithmatex">\(o(G-S) \leq |S|\)</span>.  </p>
+</div>
+<details class="note" open="open">
+<summary>思考题 5.33 (Peterson's Theorem)  2 边连通的 3 正则图有完美匹配</summary>
+<p>设 <span class="arithmatex">\(G = \langle V, E \rangle\)</span> 为 2 边连通的 3 正则图，<span class="arithmatex">\(S\)</span> 为 <span class="arithmatex">\(V\)</span> 的真子集，<span class="arithmatex">\(G_1, G_2, ..., G_k\)</span> 为 <span class="arithmatex">\(G-S\)</span> 的奇数阶连通分支<br />
+若 <span class="arithmatex">\(S = \emptyset\)</span>，<span class="arithmatex">\(G-S\)</span> 的所有连通分支阶数均为偶数，否则存在奇数阶连通分支 <span class="arithmatex">\(C\)</span>
+$$
+\sum_{v \in C} d(v) = 3 \nu(C) \equiv 1 (\operatorname{mod} 2)
+$$
+矛盾<br />
+若 <span class="arithmatex">\(S \neq \emptyset\)</span>，记 <span class="arithmatex">\(E_i = \{u v: u\in V(G_i), v\in S, u v \in E\}, d(G_i) = |E_i|\)</span>，则
+$$
+2\epsilon(G_i) = \sum_{v \in V(G_i)}d(v) - d(G_i) = 3\nu(G_i)-d(G_i)\equiv 0(\operatorname{mod} 2)
+$$
+因此 <span class="arithmatex">\(d(G_i)\)</span> 为奇数，<span class="arithmatex">\(d(G_i) \geq 1\)</span>，又因为 <span class="arithmatex">\(G\)</span> 是 2 边连通的，<span class="arithmatex">\(d(G_i) \neq 1\)</span>，即 <span class="arithmatex">\(d(G_i) \geq 3\)</span>. <br />
+$$
+3|S|=\sum_{v\in S}d(v) \geq |\bigcup_{i = 1}^{k} E_i| = \sum_{i = 1}^{k} d(G_i)\geq 3k
+$$
+于是 <span class="arithmatex">\(|S|\geq k = o(G-S)\)</span>，利用 Tutte 定理知 <span class="arithmatex">\(G\)</span> 有完美匹配. </p>
+</details>
+<details class="note" open="open">
+<summary>思考题 5.34  偶数阶 <span class="arithmatex">\((k-1)\)</span> 边连通的 <span class="arithmatex">\(k\)</span> 正则图一定有完美匹配吗？</summary>
+<p>本题与上题基本类似，就不在详细证明. </p>
+</details>
+<p>Menger、Hall、Tutte 可以相互推导，有时间会补上推导. </p>
+<p>本章暂未完成的内容：</p>
+<ol>
+<li>Hopcroft-Krap 算法时间复杂度证明</li>
+<li>Blossom 算法</li>
+<li>Tutte 定理证明</li>
+</ol>
+<h2 id="_11">本章小结<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>匹配(matching)</strong>：图 <span class="arithmatex">\(G\)</span> 的边子集 <span class="arithmatex">\(M \subseteq E\)</span>，<span class="arithmatex">\(M\)</span> 中的边两两不相邻  </li>
+<li><strong>饱和(saturated)\已匹配(matched)</strong>：匹配 <span class="arithmatex">\(M\)</span> 中边的端点称为被 <span class="arithmatex">\(M\)</span> 饱和，或已匹配  </li>
+<li><strong>极大匹配(maximal matching)</strong>：不是任何图 <span class="arithmatex">\(G\)</span> 的匹配的真子集  </li>
+<li><strong>最大匹配(maximum matching)</strong>：边的数量最多的匹配  </li>
+<li><strong>交错路(alternating path)</strong>：交替经过 <span class="arithmatex">\(M\)</span> 和 <span class="arithmatex">\(E \setminus M\)</span> 中的边的路  </li>
+<li><strong>增广路(augmenting path)</strong>：起点和终点未被匹配的交错路  </li>
+<li><strong>贝尔热定理(Berge Theorem)</strong>：对于图 <span class="arithmatex">\(G = \langle V, E \rangle\)</span> 和匹配 <span class="arithmatex">\(M \subseteq E\)</span>，<span class="arithmatex">\(M\)</span> 是最大匹配当且仅当 <span class="arithmatex">\(G\)</span> 不含 <span class="arithmatex">\(M\)</span> 增广路  </li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  <!-- <h2 id="__comments">评论</h2> -->
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="zhqnb666/blog"
+    data-repo-id="R_kgDOM1tOlA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOM1tOlM4CitCX"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+
+<!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
+<!-- tikzjax.js -->
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+<!-- pseudocode.js -->
+<link rel="stylesheet" href="../../../assets/javascripts/pseudocode.css">
+<script src="../../../assets/javascripts/pseudocode.min.js"></script>
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+  integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script efer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+  integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      // customised options
+      // • auto-render specific keys, e.g.:
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '\\[', right: '\\]', display: true }
+      ],
+      // • rendering keys, e.g.:
+      throwOnError: false
+    });
+  });
+</script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script src="../../../assets/javascripts/pseudocode.js"></script>
+<script>
+  let pseudocodes = document.querySelectorAll(".language-pseudocode");
+  let options = {
+    lineNumber: true
+  };
+  pseudocodes.forEach((pse) => {
+    let code = pse.textContent;
+    let parentEl = pse.parentElement;
+    pseudocode.render(code, parentEl, options);
+    pse.remove();
+    $(parentEl).replaceWith($('<div>' + parentEl.innerHTML + '</div>'));
+  })
+</script>
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 更新记录">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                更新记录
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../6/" class="md-footer__link md-footer__link--next" aria-label="下一页: 图论笔记（六）">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                图论笔记（六）
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.tabs.link", "navigation.indexes", "navigation.tabs", "toc.follow", "navigation.top", "navigation.instant", "navigation.tabs", "navigation.path", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

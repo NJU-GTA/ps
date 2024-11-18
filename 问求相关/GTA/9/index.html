@@ -1,0 +1,1192 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../8/">
+      
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>图论笔记（九） - Graph Theorem and Algorithm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeline.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="darkgrey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Graph Theorem and Algorithm" class="md-header__button md-logo" aria-label="Graph Theorem and Algorithm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Graph Theorem and Algorithm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              图论笔记（九）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="darkgrey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  问求相关
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Graph Theorem and Algorithm" class="md-nav__button md-logo" aria-label="Graph Theorem and Algorithm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Graph Theorem and Algorithm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    问求相关
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            问求相关
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GTA
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            GTA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（五）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（六）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（七）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（八）
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    图论笔记（九）
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    图论笔记（九）
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      边的染色
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="边的染色">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算二分图正常 \(\Delta\) 染色的分治算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misra-gries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misra-Gries 算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      顶点的染色
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      边的染色
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="边的染色">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delta" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算二分图正常 \(\Delta\) 染色的分治算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misra-gries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misra-Gries 算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      顶点的染色
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+<h1 id="_1">图论笔记（九）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">边的染色<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<details class="note" open="open">
+<summary>思考题 9.1 图 1.6（a）所示的彼得森图的边色数是多少？</summary>
+<p><img alt="peterson graph" src="../peterson.png" />
+我们看 1.6 (c) 所示的与彼得森同构的图，由与 <span class="arithmatex">\(d(v_{28}) = 3\)</span>，我们不妨假设 <span class="arithmatex">\(ec(v_{28} v_{23}) = 1, ec(v_{28} v_{26}) = 2, ec(v_{28} v_30)\)</span>，于是 <span class="arithmatex">\(ec(v_{23} v_{22}) \neq 1\)</span>，因此 <span class="arithmatex">\(ec(v_{22} v_{21})\)</span> 和 <span class="arithmatex">\(ec(v_{22} v_{27})\)</span> 中必有一者为 1。根据对称性，我们不妨假设 <span class="arithmatex">\(ec(v_{22} v_{27}) = 1\)</span>，于是可以依次得到 <span class="arithmatex">\(ec(v_{27} v_{29}) = 3, ec(v_{29} v_{24}) = 2, ec(v_{24} v_{25}) = 1, ec(v_{25} v_{21}) = 3, ec(v_{21} v_{22}) = 2\)</span>。然而，我们可以推出 <span class="arithmatex">\(ec(v_{22} v_{23}) = ec(v_{23} v_{24}) = 3\)</span>，因此 <span class="arithmatex">\(\chi'(G) &gt; 3\)</span>。容易构造出 4 边染色，这里就不给出了，事实上，由 Vizing 定理马上就得到 <span class="arithmatex">\(\chi'(G) \leq 4\)</span>，于是 <span class="arithmatex">\(\chi'(G) = 4\)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.2 边数为 <span class="arithmatex">\(m\)</span> 的图的边色数的上界是多少？下界是多少？</summary>
+<p>上界为 <span class="arithmatex">\(m\)</span>，考虑星形，其边色数就是 <span class="arithmatex">\(m\)</span>；下界为 <span class="arithmatex">\(1\)</span>，考虑每一个连通分支都是一条边的图，其边色数为 1。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.3 完全图 <span class="arithmatex">\(K_n\)</span> 的边色数是多少？</summary>
+<p>我们分奇偶讨论：<br />
+1. <span class="arithmatex">\(n\)</span> 为偶数，可以知道 <span class="arithmatex">\(K_n\)</span> 每个点的度都为 <span class="arithmatex">\(n-1\)</span>，于是 <span class="arithmatex">\(\xi' (G) \geq n - 1\)</span>。我们给出构造 $$
+E_i = {{v_{k + 1} v_{[(k+i)\mod n] + 1} : k = 0, 1, ..., n - 1}}
+$$
+于是 <span class="arithmatex">\(E_1, E_2, ..., E_{n / 2}\)</span> 构成边集的一个划分，其中 <span class="arithmatex">\(E_1, E_2, ..., E_{n / 2 - 1}\)</span> 由几个圈构成，可以进一步划分为两部分，最后就得到合法的构造，因此 <span class="arithmatex">\(\chi' (G) = n - 1\)</span>。<br />
+2. <span class="arithmatex">\(n\)</span> 为奇数，则每个集合都是一个边独立集，大小至多为 <span class="arithmatex">\(\frac{n-1}{2}\)</span>，于是
+$$
+\chi'(G) \geq \frac{n(n-1)/2}{(n-1)/2} = n
+$$
+构造出 n 边染色只需要在再加一个点，利用点数为偶数的构造构造出 n 边染色在删去加入的点即可，最后答案 <span class="arithmatex">\(\chi'(G) = n\)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.4 树的边色数是多少？</summary>
+<p><span class="arithmatex">\(\chi'(T) = \Delta(T)\)</span>，只需找到一个根，对于每个点向下分配颜色，使得分配的颜色互不相同且与父节点到其的边颜色不同即可。</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 9.1</summary>
+<p>对于任意一个二分图 <span class="arithmatex">\(G\)</span>：</p>
+<p><span class="arithmatex">\(\chi'(G)=\Delta(G)\)</span></p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.5 证明定理 9.1</summary>
+<p>首先显然 <span class="arithmatex">\(\chi'(G) \geq \Delta(G)\)</span>，只需给出一种 <span class="arithmatex">\(\Delta(G)\)</span> 边染色即可。<br />
+我们对 <span class="arithmatex">\(\Delta(G)\)</span> 归纳地给出构造，当 <span class="arithmatex">\(\Delta(G) = 0\)</span> 时，定理显然成立；当 <span class="arithmatex">\(\Delta(G) &gt; 0\)</span> 时，我们先向点数少的一边加入点直到 <span class="arithmatex">\(L\)</span> 和 <span class="arithmatex">\(R\)</span> 点数相等，再从 <span class="arithmatex">\(L\)</span> 中度小于 <span class="arithmatex">\(\Delta (G)\)</span> 的点向 <span class="arithmatex">\(R\)</span> 中度小于 <span class="arithmatex">\(\Delta(G)\)</span> 的点连边（容易证明这样的点对一定存在），直到所有点的度都等于 <span class="arithmatex">\(\Delta(G)\)</span>，记得到的图为 <span class="arithmatex">\(G'\)</span>。<br />
+利用第五章 Hall 定理的推论 2 知正则二分图 <span class="arithmatex">\(G\)</span> 有完美匹配 <span class="arithmatex">\(M\)</span>，我们取 <span class="arithmatex">\(M' = M \cap E(G)\)</span>，则 <span class="arithmatex">\(M'\)</span> 是 <span class="arithmatex">\(G\)</span> 的一个匹配，并且饱和了所有 <span class="arithmatex">\(G\)</span> 中度为 <span class="arithmatex">\(\Delta(G)\)</span> 的点（因为 <span class="arithmatex">\(G'\)</span> 中与度为 <span class="arithmatex">\(\Delta(G)\)</span> 的点关联的边在 <span class="arithmatex">\(G\)</span> 中就已经存在），于是 <span class="arithmatex">\(\Delta(G - M') = \Delta(G) - 1\)</span>，根据归纳假设我们知道 <span class="arithmatex">\(G - M'\)</span> 的边集可以划分为 <span class="arithmatex">\(\Delta(G) - 1\)</span> 个边独立集，在加上 <span class="arithmatex">\(M'\)</span> 就构成 <span class="arithmatex">\(G\)</span> 的边独立集划分，于是定理得证。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.6 若图 <span class="arithmatex">\(G\)</span> 的每个连通分支 <span class="arithmatex">\(G_i\)</span> 的边色数为 <span class="arithmatex">\(\chi_i\)</span>，则 <span class="arithmatex">\(G\)</span> 的边色数是多少？</summary>
+<p><span class="arithmatex">\(\displaystyle\max_{i} \{\chi_i\}\)</span>，不同连通分支的边染色互不影响，每个连通分支都取对应的边染色即可。</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 9.2（维辛定理）</summary>
+<p>对于任意一个图 <span class="arithmatex">\(G\)</span>：
+$$
+\Delta(G)\leq \chi'(G)\leq \Delta(G)+1
+$$</p>
+</details>
+<details class="tip" open="open">
+<summary>证明</summary>
+<p><span class="arithmatex">\(\chi' (G) \geq \Delta(G)\)</span> 是显然的，后面的算法给出了构造 <span class="arithmatex">\(\Delta(G) + 1\)</span> 边染色的方法。</p>
+</details>
+<h3 id="delta">计算二分图正常 <span class="arithmatex">\(\Delta\)</span> 染色的分治算法<a class="headerlink" href="#delta" title="Permanent link">&para;</a></h3>
+<pre><code class="language-pseudocode">
+\begin{algorithm}
+\caption{DCEC Algorithm}
+\begin{algorithmic}
+\Input {Bipartite graph $G = \langle X \cup Y, E \rangle$}
+\Initialize $c \gets 0, E_1 \gets \emptyset, E_2 \gets \emptyset$
+\Procedure{Dcec}{$G$}
+    \If {$\Delta(G) = 1$}
+        \State $c \gets c + 1$
+        \ForAll {$e \in E$}
+            \State $ec(e) \gets c$
+        \EndFor
+    \Else
+        \If {$\Delta(G)$ is odd}
+            \State $M \gets $\texttt{MDMatching}$(G)$
+            \State $c \gets c + 1$
+            \ForAll {$e \in M$}
+                \State $ec(e) \gets c$
+            \EndFor
+            \State $G \gets G - M$
+        \EndIf
+        \State $P \gets $\texttt{EulerPartition}$(G)$
+        \ForAll {$v_0, e_1, v_1, \ldots, e_t, v_t \in P$}
+            \ForAll {$e_i \in \{e_1, e_2, \ldots, e_t\}$}
+                \If {$i$ is odd}
+                    \State $E_1 \gets E_1 \cup \{e_i\}$
+                \Else
+                    \State $E_2 \gets E_2 \cup \{e_i\}$
+                \EndIf
+            \EndFor
+        \EndFor
+        \State \Call{Dcec}{$G[E_1]$}
+        \State \Call{Dcec}{$G[E_2]$}
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+</code></pre>
+
+<pre><code class="language-pseudocode">
+\begin{algorithm}
+\caption{MDMatching Algorithm}
+\begin{algorithmic}
+\Input {Bipartite graph $G = \langle X \cup Y, E \rangle$}
+\Initialize $X' \gets \emptyset, Y' \gets \emptyset, M_1 \gets \emptyset, M_2 \gets \emptyset$
+\ForAll {$v \in X$}
+    \If {$d(v) < \Delta(G)$}
+        \State $X' \gets X' \cup \{v\}$
+    \EndIf
+\EndFor
+\If {$X' \neq X$}
+    \State $M_1 \gets$ \texttt{MaximumMatching}$(G - X')$
+\EndIf
+\ForAll {$v \in Y$}
+    \If {$d(v) < \Delta(G)$}
+        \State $Y' \gets Y' \cup \{v\}$
+    \EndIf
+\EndFor
+\If {$Y' \neq Y$}
+    \State $M_2 \gets$ \texttt{MaximumMatching}$(G - Y')$
+\EndIf
+\State $M \gets M_1 \cap M_2$
+\State $M' \gets M_1 \operatorname{\Delta} M_2$
+\ForAll {$G_i \in G[M']$}
+    \State $v_0, e_1, v_1, \ldots, e_l, v_l \gets \text{maximal path or cycle in } G[M'] \text{ with start point of degree }d = \Delta(G)$
+    \ForAll {$e_i \in \{e_1, e_2, \ldots, e_l\}$}
+        \If {$i$ is odd}
+            \State $M \gets M \cup \{e_i\}$
+        \EndIf
+    \EndFor
+\EndFor
+\Return $M$
+\end{algorithmic}
+\end{algorithm}
+</code></pre>
+
+<p>先来回顾一下 Hall 定理：</p>
+<div class="admonition tip">
+<p class="admonition-title">霍尔定理(Hall's theorem)</p>
+<p>对于二分图 <span class="arithmatex">\(G = \langle X \cup Y, E \rangle\)</span>，<span class="arithmatex">\(G\)</span> 有饱和顶点子集 <span class="arithmatex">\(X\)</span> 中所有顶点的匹配当且仅当对于任意顶点子集 <span class="arithmatex">\(S \subseteq X\)</span>，<span class="arithmatex">\(|N(S)| \geq |S|\)</span>. <br />
+A bipartite graph <span class="arithmatex">\(G := G[X, Y]\)</span> has a matching which covers every vertex in <span class="arithmatex">\(X\)</span> if and only if
+$$
+|N(S)| \geq |S| \text{ for all } S \subseteq X
+$$</p>
+</div>
+<details class="note" open="open">
+<summary>思考题 9.7 为什么图 <span class="arithmatex">\(G - X'\)</span> 的最大匹配饱和顶点子集 <span class="arithmatex">\(X \setminus X'\)</span> 中的所有顶点？</summary>
+<p>只需注意到 <span class="arithmatex">\(\forall v \in X \setminus X', d(v) = \Delta(G)\)</span>，我们任意取 <span class="arithmatex">\(S \subseteq X \setminus X'\)</span>，设 <span class="arithmatex">\(E_1\)</span> 为 <span class="arithmatex">\(S\)</span> 关联的边集， <span class="arithmatex">\(E_2\)</span> 为 <span class="arithmatex">\(N(S)\)</span> 关联的边集，我们有
+$$
+\Delta(G) \cdot |S| = |E_1| \leq |E_2| \leq \Delta(G) \cdot |N(S)|
+$$
+即 <span class="arithmatex">\(|S| \leq |N(S)|\)</span>，由 Hall 定理我们即得结论。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.8 对于长度为偶数的路，为什么其起点和终点中只能有一个满足 <span class="arithmatex">\(d = \Delta(G)\)</span>？</summary>
+<p>我们不妨假设起点 <span class="arithmatex">\(u\)</span> 满足 <span class="arithmatex">\(d(u) = \Delta(G)\)</span> 且 <span class="arithmatex">\(u \in X \setminus X'\)</span>，那么路上面的边必然交替的属于 <span class="arithmatex">\(M_1\)</span> 和 <span class="arithmatex">\(M_2\)</span>，即 <span class="arithmatex">\(e_1 \in M_1, e_2 \in M_2, ...\)</span>。同时我们还知道 <span class="arithmatex">\(e_1 \notin M_2, e_2 \notin M_1\)</span>，否则 <span class="arithmatex">\(G[M']\)</span> 的对应连通分支就成为一条边，与长度为偶数矛盾。<br />
+由于路的长度为偶数，容易知道 <span class="arithmatex">\(e_l\in M_2\)</span> 且 <span class="arithmatex">\(v_l \in X\)</span>，如果 <span class="arithmatex">\(v_l \in X \setminus X'\)</span>，那么 <span class="arithmatex">\(M_1\)</span> 中应该有一条边 <span class="arithmatex">\(e_{l+1} \in M_1\)</span> 不与 <span class="arithmatex">\(e_l\)</span> 重合，否则 <span class="arithmatex">\(e_{l+1}\)</span> 和 <span class="arithmatex">\(e_{l-1}\)</span> 相邻与匹配定义矛盾，这样，将 <span class="arithmatex">\(e_{l+1}\)</span> 拼接在路的后面得到一条更长的路，与极长矛盾。所以我们有 <span class="arithmatex">\(v_l \in X'\)</span>，于是 <span class="arithmatex">\(d(v_l) &lt; \Delta (G)\)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.9 根据欧拉划分的性质，为什么 <span class="arithmatex">\(\Delta (G[E_1]), \Delta(G[E_2]) \leq \frac{\Delta(G)}{2}\)</span></summary>
+<p>由题意有 <span class="arithmatex">\(\Delta(G - M) = \Delta(G) - 1\)</span>，对于每个闭迹和一个特定的顶点 <span class="arithmatex">\(v\)</span>，我们将闭迹中与 <span class="arithmatex">\(v\)</span> 关联的边的恰好一半分配给 <span class="arithmatex">\(E_1\)</span>，而另一半分配给 <span class="arithmatex">\(E_2\)</span>。唯一会导致分配不均的是 <span class="arithmatex">\(v\)</span> 是非平凡迹的起点或终点，但以特定点为起点或终点的非平凡迹至多只有 1 条，因此
+$$
+\Delta(G[E_1]), \Delta(G[E_2]) \leq \frac{\Delta(G - M) + 1}{2} = \frac{\Delta(G)}{2}
+$$</p>
+</details>
+<pre><code class="language-pseudocode">
+\begin{algorithm}
+\caption{EulerPartition Algorithm}
+\begin{algorithmic}
+\Input {Graph $G = \langle V, E \rangle$}
+\Initialize $\mathcal{P} \gets \emptyset$
+\While {$E \neq \emptyset$}
+    \If {$\exists v \in V, d(v)$ is odd}
+        \State $u \gets v$
+    \Else
+        \State $u \gets$ any non-isolated vertex in $V$
+    \EndIf
+    \State $P \gets$ a maximal trail or maximal closed trail in $G$ starting from $u$
+    \State $\mathcal{P} \gets \mathcal{P} \cup \{P\}$
+    \State $G \gets G - P$ (the set of edges traversed by $P$)
+\EndWhile
+\Return $\mathcal{P}$
+\end{algorithmic}
+\end{algorithm}
+</code></pre>
+
+<details class="note" open="open">
+<summary>思考题 9.10 为什么集合 <span class="arithmatex">\(\mathcal{P}\)</span> 中的迹经过的边的集合满足欧拉划分的性质？</summary>
+<p>只需证明算法运行过程中每个点至多被选择为欧拉迹的起点一次，这是因为算法优先选择度为奇数的顶点，并且不可能停在度为偶数的顶点，否则终点还会有一条边没被选择，与极长矛盾，这样奇数度的顶点就会减少两个，起点和终点的度在删除后都变成偶数。而如果算法选择了偶数度的点为起点，所有点的度均为偶数，这时候为了满足极长只能形成一个欧拉回路而不能停在起点之外的任何点。所以以特定奇数度顶点为起点的迹至多有一条。</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 9.3</summary>
+<p>算法构造的函数 <span class="arithmatex">\(ec\)</span> 是图 <span class="arithmatex">\(G\)</span> 的正常 <span class="arithmatex">\(\Delta(G)\)</span> 边染色。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.11 证明定理 9.3</summary>
+<p>对于 <span class="arithmatex">\(\Delta(G) = 1\)</span>，算法的正确性是显然的<br />
+做归纳假设：算法可以找到 <span class="arithmatex">\(\Delta (G) \leq n - 1\)</span> 的正常 <span class="arithmatex">\(\Delta(G)\)</span> 边染色。我们将 <span class="arithmatex">\(G\)</span> 划分成 <span class="arithmatex">\(M, G[E_1], G[E_2]\)</span> 三部分，对于 <span class="arithmatex">\(G[E_1]\)</span> 和 <span class="arithmatex">\(G[E_2]\)</span>，算法都是正确的，于是算法输出的染色颜色数量为
+$$
+\Delta(G[E_1]) + \Delta(G[E_2]) + 1 = \Delta(G)
+$$
+可以归纳的证明算法的输出是正常染色，定理得证。</p>
+</details>
+<p>如果用 Hopcroft-Karp 算法寻找最大匹配，则算法时间复杂度为 <span class="arithmatex">\(O(\sqrt{n}m\log \Delta)\)</span></p>
+<h3 id="misra-gries">Misra-Gries 算法<a class="headerlink" href="#misra-gries" title="Permanent link">&para;</a></h3>
+<pre><code class="language-pseudocode">
+\begin{algorithm}
+\caption{Misra-Gries Edge Coloring Algorithm}
+\begin{algorithmic}
+\Input {Graph $G = \langle V, E \rangle$}
+\Initialize {Set $ec(e) \gets 0$ for all edges $e \in E$}
+\While {$\exists (u, v_0) \in E, ec((u, v_0)) = 0$}
+    \State $v_0, v_1, \ldots, v_l \gets$ a maximum $u$-fan
+    \State $c_l \gets$ a color not used on edges incident to $v_l$ (between 1 and $\Delta(G)+1$)
+    \State $c_u \gets$ a color not used on edges incident to $u$ (between 1 and $\Delta(G)+1$)
+    \If {$\exists v_k \in \{v_0, v_1, \ldots, v_{l-1}\}, ec((u, v_k)) = c_l$}
+        \State $P \gets$ a longest path starting at $u$, alternating colors $c_l$ and $c_u$
+        \For {\textbf{each} edge $e \in P$}
+            \If {$ec(e) = c_l$}
+                \State $ec(e) \gets c_u$
+            \Else
+                \State $ec(e) \gets c_l$
+            \EndIf
+        \EndFor
+        \If {$P$ passes through vertex $v_{k-1}$}
+            \State $v_w \gets v_l$
+        \Else
+            \State $v_w \gets v_{k-1}$
+        \EndIf
+    \Else
+        \State $v_w \gets v_l$
+    \EndIf
+    \For {\textbf{each} $v_i \in \{v_1, v_2, \ldots, v_w\}$}
+        \State $ec((u, v_{i-1})) \gets ec((u, v_i))$
+    \EndFor
+    \State $ec((u, v_w)) \gets c_l$
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+</code></pre>
+
+<details class="note" open="open">
+<summary>思考题 9.12 为什么色 <span class="arithmatex">\(c_0\)</span> 一定存在？</summary>
+<p>因为 <span class="arithmatex">\(v_0\)</span> 至多关联 <span class="arithmatex">\(\Delta (G)\)</span>。</p>
+</details>
+<h2 id="_3">顶点的染色<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<details class="note" open="open">
+<summary>思考题 9.21 图 1.6（a）所示的彼得森图的点色数是多少？</summary>
+<p><img alt="petersen" src="../peterson.png" />
+由于图中包含奇圈，显然 2 种颜色是不行的，再注意到 <span class="arithmatex">\(\{v_1, v_3, v_9, v_{10}\}, \{v_2, v_4, v_8\}, \{v_5, v_6, v_7\}\)</span> 符合要求，因此点色数为 3。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.22 阶为 <span class="arithmatex">\(n\)</span> 的图的点色数的上界是多少？下界是多少？</summary>
+<p>考虑完全图，任意两个顶点不能染相同的颜色，因此点色数是 <span class="arithmatex">\(n\)</span>，即上界为 <span class="arithmatex">\(n\)</span>；考虑空图，点色数为 1，因此下界为 1，如果是非空图，则至少为 2。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.23 完全图 <span class="arithmatex">\(K_n\)</span> 的点色数是多少？</summary>
+<p>如上，点色数为 <span class="arithmatex">\(n\)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.24 树的点色数是多少？</summary>
+<p>对于平凡树，点色数为 1；对于非平凡树，我们可以将他看做一个二分图，一边染一种颜色，共需要两种颜色，点色数为 2。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.25 二分图的点色数是多少？</summary>
+<p>每边染一种颜色，点色数为 2。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.26 若图 <span class="arithmatex">\(G\)</span> 的每个连通分支 <span class="arithmatex">\(G_i\)</span> 的点色数为 <span class="arithmatex">\(\chi_i\)</span>，则 <span class="arithmatex">\(G\)</span> 的点色数是多少？</summary>
+<p>不同连通分支互不影响，点色数为 <span class="arithmatex">\(\displaystyle\max_{i} \chi_i\)</span>。</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.27 若连通图 <span class="arithmatex">\(G\)</span> 的每个块 <span class="arithmatex">\(G\)</span> 的点色数为 <span class="arithmatex">\(\chi_i\)</span>，则 <span class="arithmatex">\(G\)</span> 的点色数是多少？</summary>
+<p>不同块至多公用一个顶点，其他顶点互不影响，只需保证公共点染相同颜色即可，点色数为 <span class="arithmatex">\(\displaystyle\max_{i} \chi_i\)</span>。</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 9.5</summary>
+<p>对于任意一个图 <span class="arithmatex">\(G\)</span>：
+$$
+\chi(G) \leq \Delta(G) + 1
+$$</p>
+</details>
+<details class="tip" open="open">
+<summary>定理 9.6（Brook 定理）</summary>
+<p>对于任意一个连通图 <span class="arithmatex">\(G\)</span>，若 <span class="arithmatex">\(G\)</span> 非完全图且非恰由一个奇圈组成，则
+$$
+\chi(G) \leq \Delta(G)
+$$</p>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.28 证明定理 9.6</summary>
+</details>
+<details class="note" open="open">
+<summary>思考题 9.29 证明：若图 <span class="arithmatex">\(G\)</span> 的所有点导出子图的最小度至多为 <span class="arithmatex">\(k\)</span>，则 <span class="arithmatex">\(\chi(G) \leq k + 1\)</span></summary>
+<p>我们用对 <span class="arithmatex">\(|V(G)|\)</span> 归纳：<br />
+1. 若 <span class="arithmatex">\(|V(G)| = 1\)</span>，命题显然成立<br />
+2. 若 <span class="arithmatex">\(|V(G)| &gt; 1\)</span>，则 <span class="arithmatex">\(G\)</span> 中存在一个顶点度不超过 <span class="arithmatex">\(k\)</span>。考虑图 <span class="arithmatex">\(G - v\)</span>，它的每个点导出子图的最小度不超过 <span class="arithmatex">\(k\)</span>，于是由归纳假设我们知道 <span class="arithmatex">\(\chi(G - v) \leq k + 1\)</span>。取 <span class="arithmatex">\(G - v\)</span> 的一个正常 <span class="arithmatex">\(\chi(G - v)\)</span> 点染色，则 <span class="arithmatex">\(v\)</span> 还有 <span class="arithmatex">\(k + 1 - d(v) &gt; 0\)</span> 中颜色可染，任意染一种颜色就得到 <span class="arithmatex">\(\chi(G - v)\)</span> 染色，因此 <span class="arithmatex">\(\chi(G) \leq \chi(G - v) \leq k + 1\)</span>。</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  <!-- <h2 id="__comments">评论</h2> -->
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="zhqnb666/blog"
+    data-repo-id="R_kgDOM1tOlA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOM1tOlM4CitCX"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+
+<!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
+<!-- tikzjax.js -->
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+<!-- pseudocode.js -->
+<link rel="stylesheet" href="../../../assets/javascripts/pseudocode.css">
+<script src="../../../assets/javascripts/pseudocode.min.js"></script>
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+  integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script efer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+  integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+  onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      // customised options
+      // • auto-render specific keys, e.g.:
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '\\[', right: '\\]', display: true }
+      ],
+      // • rendering keys, e.g.:
+      throwOnError: false
+    });
+  });
+</script>
+
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<script src="../../../assets/javascripts/pseudocode.js"></script>
+<script>
+  let pseudocodes = document.querySelectorAll(".language-pseudocode");
+  let options = {
+    lineNumber: true
+  };
+  pseudocodes.forEach((pse) => {
+    let code = pse.textContent;
+    let parentEl = pse.parentElement;
+    pseudocode.render(code, parentEl, options);
+    pse.remove();
+    $(parentEl).replaceWith($('<div>' + parentEl.innerHTML + '</div>'));
+  })
+</script>
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../8/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 图论笔记（八）">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                图论笔记（八）
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.tabs.link", "navigation.indexes", "navigation.tabs", "toc.follow", "navigation.top", "navigation.instant", "navigation.tabs", "navigation.path", "navigation.footer", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
